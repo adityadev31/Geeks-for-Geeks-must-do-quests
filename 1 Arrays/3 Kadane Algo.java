@@ -52,18 +52,18 @@ class GFG {
     
 	public static void main (String[] args)throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(br.readLine());
-        while(t-- > 0){
-            int n = Integer.parseInt(br.readLine());
-            int a[] = new int[n];
-            
-            String line = br.readLine();
-            int i = 0;
-            for (String numStr: line.split("\\s")){
-                a[i] = Integer.parseInt(numStr);
-                i++;
-            }
-            System.out.println(kadane(a, n));
-        }
+		int t = Integer.parseInt(br.readLine());
+		while(t-- > 0){
+			int n = Integer.parseInt(br.readLine());
+			int a[] = new int[n];
+
+			String line = br.readLine();
+			int i = 0;
+			for (String numStr: line.split("\\s")){
+				a[i] = Integer.parseInt(numStr);
+				i++;
+			}
+			System.out.println(kadane(a, n));
+		}
 	}
 }
