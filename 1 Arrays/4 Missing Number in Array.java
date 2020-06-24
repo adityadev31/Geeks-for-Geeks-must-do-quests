@@ -66,7 +66,7 @@ class GFG {
           int n = Integer.parseInt(br.readLine());
           int arr[] = new int[n];
 
-          arr[0]=0;
+          arr[0]=0; // NOTE - adding 0 at index 0 and keeping array size as n so that values match their indexes
           int i=1;
           String line = br.readLine();
           for(String str: line.split("\\s")){
