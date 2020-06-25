@@ -40,50 +40,6 @@ import java.io.*;
 class GFG {
     
     public static void equilibrium(int[] arr, int n, int totalSum){
-        if(n==1){                          // if size == 1 --> 1
-            System.out.println(1);
-            return;
-        }
-        int i=1;
-        int leftSum = 0;
-        int rightSum = 0;
-        for(i=1; i<n-1; i++){                    // 0, ( i=1, --> i=n-2 ) i=n-1
-            leftSum += arr[i-1];                 // sum before i
-            rightSum = totalSum-leftSum-arr[i];  // sum after i = total-left-i
-            if(leftSum == rightSum){   
-                System.out.println(i+1);
-                return;
-            }
-        }
-        if(i==n-1) System.out.println(-1);        // not found case
-    }
-    
-	public static void main (String[] args) throws IOException{
-	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int t = Integer.parseInt(br.readLine());
-		while(t-->0){
-		    int n = Integer.parseInt(br.readLine());
-		    int arr[] = new int[n];
-		    String str[] = br.readLine().trim().split("\\s+");
-		    int i=-1;
-		    int sum = 0;
-		    while(++i<n){
-		        arr[i]=Integer.parseInt(str[i]);
-		        sum = sum+arr[i];
-		    }
-		    equilibrium(arr, n, sum);
-		}
-	}
-}
-
-
-
-/**
-
-method 2
-
-
-    public static void equilibrium(int[] arr, int n, int totalSum){
         int leftSum = 0;
         int rightSum = totalSum;
         int i=0;
@@ -99,5 +55,22 @@ method 2
         System.out.println(-1);
     }
     
+	public static void main (String[] args) throws IOException{
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0){
+		    int n = Integer.parseInt(br.readLine());
+		    int arr[] = new int[n];
+		    String str[] = br.readLine().trim().split("\\s+");
+		    int i=-1;
+		    int sum = 0;
+		    while(++i<n){
+			arr[i]=Integer.parseInt(str[i]);
+			sum = sum+arr[i];
+		    }
+		    equilibrium(arr, n, sum);
+		}
+	}
+}
 
-**/
+
