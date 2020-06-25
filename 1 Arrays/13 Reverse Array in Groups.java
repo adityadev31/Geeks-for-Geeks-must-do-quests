@@ -34,8 +34,6 @@ Testcase 1: Reversing groups in size 3, first group consists of elements 1, 2, 3
 
 import java.util.*;
 
- // Compiler version JDK 11.0.2
-
  class Main
  {
    public static void reverse (int[] arr, int k){
@@ -44,15 +42,13 @@ import java.util.*;
      int i=0, j=0, p=0;
      int[] ans = new int[n];
      while(i<n){
-       if(j<k){
+       if(j<k){.            // k times pushing arr -> stack
          st.push(arr[i++]);
          j++;
        }
-       else{
-         while(j>0){
-           ans[p++] = st.pop();
-           j--;
-         }
+       else{                // if j==k pop stack -> ans and reset j=0  
+         while(st.size()>0) ans[p++] = st.pop();
+         j = 0;
        }
      }
      
@@ -70,6 +66,7 @@ import java.util.*;
     reverse(arr, k);
    }
  }
+
 
 
 // Ans = 3 2 1 5 4
