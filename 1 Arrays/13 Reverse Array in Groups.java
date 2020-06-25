@@ -42,7 +42,7 @@ import java.util.*;
      int i=0, j=0, p=0;
      int[] ans = new int[n];
      while(i<n){
-       if(j<k){.            // k times pushing arr -> stack
+       if(j<k){             // k times pushing arr -> stack
          st.push(arr[i++]);
          j++;
        }
