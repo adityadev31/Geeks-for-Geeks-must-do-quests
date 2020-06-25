@@ -75,3 +75,29 @@ class GFG {
 		}
 	}
 }
+
+
+
+/**
+
+method 2
+
+
+    public static void equilibrium(int[] arr, int n, int totalSum){
+        int leftSum = 0;
+        int rightSum = totalSum;
+        int i=0;
+        while(i<n){
+            rightSum -= arr[i];            // (update right) now we have left and right
+            if(leftSum == rightSum){
+                System.out.println(i+1);
+                return;
+            }
+            leftSum += arr[i];             // (update left)
+            i++;
+        }
+        System.out.println(-1);
+    }
+    
+
+**/
