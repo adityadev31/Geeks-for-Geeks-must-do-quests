@@ -52,7 +52,7 @@ class GFG
             else{
                 max = i;                          // (increment) i > min   --> max = i
                 while(max+1 < n){
-                    if(arr[max] <= arr[max+1]){ max++; }  // max+1 >= max --> max++
+                    if(arr[max] <= arr[max+1]){ max++; }  // max+1 >= max --> max++ (increment)
                     else{ break; }                        // max+1 < max  --> break (downfall)
                 }
                 System.out.print("("+min+" "+max+") ");  // we have both min and max now hence print
