@@ -40,7 +40,7 @@ import java.lang.*;
 import java.io.*;
 
 
-// comparator class for Arrays.sort 
+// comparator class interface for Arrays.sort 
 class StrComp implements Comparator<String>{
      public int compare(String x, String y){
           String A = new String (x+y);
