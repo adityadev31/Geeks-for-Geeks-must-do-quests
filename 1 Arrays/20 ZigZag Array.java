@@ -36,7 +36,7 @@ import java.io.*;
 class GFG
  {
     /*
-        HINT - even indexes must be lower than their adjacent next odd (i.e, odd = peak and even = valley)
+        HINT - even indexes must be lower than their adjacent next odd (i.e, odd = peak and even = valley)   /\/\/\/\/
         
         approach - 
         step1 - initialize i=1 (and keep comparing with i-1)
