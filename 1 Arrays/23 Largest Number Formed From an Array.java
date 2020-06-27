@@ -42,17 +42,25 @@ class GFG
  {
     /**       USING ARRAYS SORT AND COMPARATOR         **/
      
+
+        // comparator class for Arrays.sort 
+        class StrComp implements Comparator<String>{
+            public int compare(String x, String y){
+                String A = new String (x+y);
+                String B = new String (y+x);
+                return B.compareTo(A);        // we want   
+            }
+        }
+
      
 	public static void main (String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int t = Integer.parseInt(br.readLine());
 		while(t-->0){
 		    br.readLine();
-            String strarr[] = br.readLine().split(" ");
-            Arrays.sort(strarr, ((x,y)->
-                (x+y).compareTo((y+x))>0?-1:1
-            ));
-            System.out.println(String.join("",strarr));
+                    String strarr[] = br.readLine().split(" ");
+                    Arrays.sort(strarr, new StrComp());
+                    System.out.println(String.join("",strarr));
 		}
 	}
 }
