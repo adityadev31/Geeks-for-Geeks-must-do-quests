@@ -36,7 +36,6 @@ Testcase 1 : Elements on left of 5 are smaller than 5 and on right of it are gre
 **/
 
 
-
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -44,25 +43,19 @@ class GFG
  {
      
     /*
-        H I N T - only that element has left lower and right higher which is already in sorted position ( say index i )
-                - but there should be no element greater in left (of arr[i]) and no element lower in right (of arr[i]) { where arr[] = original array }
+        H I N T - suppose arr[i] is the ans then-
+                  maxElement before i must be lesser than arr[i] i.e, ( maxBefore[i] <= arr[i] )
+                  minElement after  i must be greater than arr[i] i.e,  ( arr[i] <= minAfter[i] )
     
         approach - 
-        step1 - sort the arr[]
-        step2 - make max so far (L --> R) from original array
-        step3 - make min so far (R --> L) from original array
-        step4 - check for element in original array which is already in sorted position 
-                i.e, (arr[i] == sorted[i]) also (maxBefore[i] <= arr[i]) also (arr[i] <= minAfter[i])
+        step1 - make max so far (L --> R) from original array
+        step2 - make min so far (R --> L) from original array
+        step3 -(maxBefore[i] <= arr[i]) also (arr[i] <= minAfter[i])
     */
      
     public static void solve(int[] arr, int n) {
         
-        // sorted
-        int sorted[] = new int[n];
-        for(int i=0; i<n; i++) sorted[i] = arr[i];
-        Arrays.sort(sorted);
-        
-        // max so far
+        // max so far (L --> R)  i.e, maximum element from 0 to i-1
         int maxBefore[]  = new int[n];
         int max = Integer.MIN_VALUE;
         for(int i=0; i<n; i++){
@@ -70,7 +63,7 @@ class GFG
             maxBefore[i] = max;
         }
         
-        // min so far (*  NOTE -   from L <-- R  *) i.e, upcoming minimums
+        // min so far (*  NOTE -   from L <-- R  *) i.e, minimum from i+1
         int minAfter[]  = new int[n];
         int min = Integer.MAX_VALUE;
         for(int i=n-1; i>=0; i--){
@@ -79,9 +72,9 @@ class GFG
         }
         
         
-        // checking for elements already present in sorted index (also greater than their respective max so far)
+        // (maxBefore[i] <= arr[i]) also (arr[i] <= minAfter[i])
         for(int i=1; i<n-1; i++){
-            if(sorted[i] == arr[i] && maxBefore[i] <= arr[i] && minAfter[i] >= arr[i]){
+            if(maxBefore[i] <= arr[i] && minAfter[i] >= arr[i]){
                 System.out.println(arr[i]);          // element found !!
                 return;
             }
