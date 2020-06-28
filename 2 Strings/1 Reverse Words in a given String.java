@@ -36,12 +36,12 @@ class GFG
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int t = Integer.parseInt(br.readLine());
 		while(t-->0){
-		    String str[] = br.readLine().trim().split("\\.");
-		    StringBuilder sb = new StringBuilder();
-		    for(int i=str.length-1; i>=0; i--) sb.append(str[i] + ".");
-		    String ans = new String(sb.toString());
-		    int len = ans.length();
-		    System.out.println(ans.substring(0, len-1));
+		    String str[] = br.readLine().trim().split("\\.");       // splitting when " . " comes
+		    StringBuilder sb = new StringBuilder();                 
+		    for(int i=str.length-1; i>=0; i--) sb.append(str[i] + ".");  // reverse looping and adding elements with "." at last of every element
+		    String ans = new String(sb.toString());                      // converting it to string
+		    int len = ans.length();                                
+		    System.out.println(ans.substring(0, len-1));                 // removing the last "." and returning the ans
 		}
 	}
 }
