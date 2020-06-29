@@ -32,61 +32,60 @@ Testcase 1: Longest common prefix in all the given string is gee.
 
 
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
 
-class LenComp implements Comparator<String>{
-    public int compare(String x, String y){
-        long len1 = x.length();
-        long len2 = y.length();
-        if((len1-len2) > 0) return 1;
-        else if (len1 == len2) return 0;
-        else return -1;
-    }
-}
-
-
-
-class GFG
- {
+/**
+  
+  step 1 - find the length of the smallest string (coz we only need to traverse til the smallest string)
+  
+  step 2 - String ans = "" will store the resulting string
+  
+  step 3 - in loop( i=0 -> min
     
-    public static void prefix(String[] str, int n){
-        
-        if(n==1){
-            System.out.println(str[0]);
-            return;
-        }
-        
-        // find the shortest string and check one by one that other contains or not
-        
-        Arrays.sort(str, new LenComp());
-        String shortest = str[0];
-        
-        String ans = "";
-        
-        for(int i=1; i<=shortest.length(); i++){
-            for(int j=1; j<str.length; j++){
-                if(!shortest.substring(0,i).equals(str[j].substring(0,i))){
-                    if(i==1){
-                        System.out.println("-1");
-                        return;
-                    }
-                    System.out.println(shortest.substring(0, i-1));
-                    return;
-                }
-            }
-        }
-        System.out.println(shortest);
-    }
+              - insert ith char of S[0] in ans 
+              - check if other strings contain this char or not (if not then (
+                
+                - if(i==0) return "-1";
+                - else return ans.substring(0,i);
+                  
+              ))
+  )
+  
+  step 4 - Return ans;
+  
+  **/
+
+
+
+import java.util.*;
+
+ class Main
+ {
+   public static String LCP(String[] s){
+     int min = Integer.MAX_VALUE;
+     int n = s.length;
+     for(int i=0; i<n; i++){
+       if(s[i].length() < min) min = s[i].length();  // step1
+     }  
      
-	public static void main (String[] args) throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int t = Integer.parseInt(br.readLine());
-		while(t-->0){
-		    int n = Integer.parseInt(br.readLine());
-		    String str[] = br.readLine().trim().split("\\s+");
-		    prefix(str, n);
-		}
-	}
-}
+     String ans = "";                 // step2
+     for(int i=0; i<min; i++){        // step3
+       ans += s[0].charAt(i);
+       for(int j=1; j<n; j++){
+           if(s[j].charAt(i) != s[0].charAt(i)){
+             if(i == 0) return "-1";
+             return (ans.substring(0,i));  
+           }
+       }  
+     }
+     return ans;       // step4
+   }
+   
+  
+   public static void main(String args[])
+   { 
+    String s1 = "apple appear application april";
+    String s[] = s1.trim().split("\\s+");
+    System.out.println(LCP(s));
+   }
+ }
+
