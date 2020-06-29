@@ -79,3 +79,15 @@ class GFG
 		}
 	}
 }
+
+
+/**
+
+input - mississipie
+output  mpie
+
+coz - 
+1st iteration - miiipie
+2nd iteration - mpie
+
+**/
