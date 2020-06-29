@@ -30,45 +30,32 @@ Testcase 2: Characters in both the strings are not same, so they are not anagram
 
 
 
-
-
 import java.util.*;
-import java.lang.*;
-import java.io.*;
-class GFG
+
+
+ class Main
  {
-	public static void main (String[] args) throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int t = Integer.parseInt(br.readLine());
-		while(t-->0){
-		    String str[] = br.readLine().trim().split("\\s+");
-		    String s1 = str[0];
-		    String s2 = str[1];
-		    
-		    int n1 = s1.length(), n2 = s2.length();
-		    if(n1!=n2){
-		        System.out.println("NO");
-		        continue;
-		    }
-		    else{
-		        
-		        char[] c1 = s1.toCharArray();
-		        char[] c2 = s2.toCharArray();
-		        Arrays.sort(c1);
-		        Arrays.sort(c2);
-		        int flag = 1;
-		        for(int i=0; i<n1; i++){
-		            if(c1[i] != c2[i]){
-		                System.out.println("NO");
-		                flag = -1;
-		                break;
-		            }
-		        }
-		        if(flag == 1){
-		            System.out.println("YES");
-		        }
-		    }
-		    
-		}
-	}
-}
+   public static String isAnagram(String s1, String s2){
+     s1 = s1.replaceAll("\\s+", "");   // remove white spaces
+     s2 = s2.replaceAll("\\s+", "");   // remove white spaces
+     s1 = s1.toUpperCase();            // upper case all 
+     s2 = s2.toUpperCase();            // upper case all
+     char[] c1 = s1.toCharArray();
+     char[] c2 = s2.toCharArray();  
+     Arrays.sort(c1);
+     Arrays.sort(c2);
+     s1 = new String(c1);
+     s2 = new String(c2);
+     if(s1.equals(s2)) return "Yes";
+     else return "No";
+   }
+   
+   public static void main(String args[])
+   { 
+    String s1 = "    sky is Blue";
+    String s2 = " bLUEis  skY";
+    System.out.println(isAnagram(s1,s2));
+   }
+ }
+
+// ans = Yes
