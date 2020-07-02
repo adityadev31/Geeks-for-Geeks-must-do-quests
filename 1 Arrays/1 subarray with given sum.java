@@ -32,45 +32,57 @@ Testcase2: sum of elements from 1st position to 5th position is 15
 
 
 
-/*package whatever //do not write package name here */
-
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
-class GFG {
+class GFG
+ {
     
-    public static void findIndex(int[] arr, int N, int key){
-        for(int i=0; i<N; i++){
-            int j=i, sum=0;
-            while(true){
-                sum += arr[j];
-                j++;
-                if(sum==key){
-                    i++;
-                    System.out.println(i+" "+j);
-                    return;
-                }
-                if(j==N || sum>key) break;
+    public static void sumIndex(int arr[], int n, int k){
+        HashMap<Integer, Integer> sumSoFar = new HashMap<Integer, Integer>();
+        int i=0;
+        int sum = 0;
+        sumSoFar.put(sum, 0);                       // store sums so far in hashmap with their indexes
+        StringBuilder sb = new StringBuilder();
+        while(i < n){
+            sum += arr[i];                          // keep incrementing the sum and adding to hash
+            sumSoFar.put(sum, i+1);
+            if(sumSoFar.containsKey(sum-k)){        // if(current_sum - k) is present in hashmap then its index+1 = left and current index+1 = right
+                int r = i+1;
+                int l = sumSoFar.get(sum-k)+1;
+                sb.append( l+ " " + r);
+                System.out.println(sb);
+                return;
             }
-            
+            i++;
         }
-        System.out.println(-1);
+        sb.append("-1");
+        System.out.println(sb);
+        return;
     }
-    
-	public static void main (String[] args) {
-		Scanner scan = new Scanner(System.in);
-		int T = scan.nextInt();
-		int N;
-		int S;
-		for(int i=0; i<T; i++){
-		    N = scan.nextInt();    // size
-		    S = scan.nextInt();    // key
-		    int arr[] = new int[N];
-		    for(int j=0; j<N; j++){
-		        arr[j] = scan.nextInt();
-		    }
-		    findIndex(arr, N, S);
-		}
-	}
+     
+	public static void main (String[] args) throws IOException
+	 {
+    	 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    	 int t = Integer.parseInt(br.readLine());
+    	 while(t-->0){
+    	    // int n = Integer.parseInt(br.readLine());
+    	    String size[] = br.readLine().trim().split("\\s+");    
+    	    int n = Integer.parseInt(size[0]);
+    	    int k = Integer.parseInt(size[1]);
+    	    int arr[] = new int[n];
+    	    String str[] = br.readLine().trim().split("\\s+");    
+    	    for(int i=0; i<n; i++){
+    	        arr[i] = Integer.parseInt(str[i]);
+    	    }
+    	    sumIndex(arr, n, k);
+    	 }
+	 }
 }
+
+
+/**
+
+bag - 1 3 6 13 18
+
+**/
