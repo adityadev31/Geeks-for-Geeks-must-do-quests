@@ -78,7 +78,7 @@ class Tree
           int size = q.size();
           for(int i=0; i<size; i++){
               Node x = q.poll();
-              if(i==0) System.out.print(x.data + " ");
+              if(i==0) System.out.print(x.data + " ");   // printing the first element of each level
               if(x.left != null) q.add(x.left);
               if(x.right != null) q.add(x.right);
           }
