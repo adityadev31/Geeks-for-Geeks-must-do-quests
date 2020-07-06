@@ -74,7 +74,7 @@ class Tree
       if(root == null) return;
       Queue<Node> q = new LinkedList<>();
       q.add(root);
-      while(q.size() > 0){
+      while(q.size() > 0){                        // using levelorder traversal
           int size = q.size();
           for(int i=0; i<size; i++){
               Node x = q.poll();
