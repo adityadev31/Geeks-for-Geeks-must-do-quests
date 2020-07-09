@@ -48,23 +48,20 @@ import java.io.*;
 class GFG
  {
     public static void solve(int[] arr, int n, int k){
-        PriorityQueue<Integer> mh = new PriorityQueue<>();
+        PriorityQueue<Integer> q = new PriorityQueue<>();
         int i = 0;
-        for(i=0; i<k-1; i++){               // printing -1 till k-1
-            System.out.print("-1 ");
-        }
-        for(i=0; i<k; i++){
-          mh.add(arr[i]);                   // adding k elements from the array to min heap
-        }
+        for(i=0; i<k-1; i++) System.out.print("-1 ");      // printing -1 till k-1
+         
+        for(i=0; i<k; i++) q.add(arr[i])                 // adding 1st k elements from the array to min heap
     
         for(i=k; i<n; i++){
-          System.out.print(mh.peek() + " ");
-          if(arr[i] > mh.peek()){               // if current element > minheap's 1st element
-            mh.remove();                        // remove first and add current element
-            mh.add(arr[i]);
-          }
+          System.out.print(q.peek() + " ");    // always print q.peek() first
+          if(arr[i] > q.peek()){               // if current element > minheap's 1st element  remove and add current new element
+            q.remove();                        // remove first and add current element
+            q.add(arr[i]);
+          }				       // else no need to add lower elements
         }
-        System.out.print(mh.peek() + " ");
+        System.out.print(q.peek() + " ");
         System.out.println();
     }
      
