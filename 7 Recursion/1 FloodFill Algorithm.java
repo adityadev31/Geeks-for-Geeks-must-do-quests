@@ -98,7 +98,7 @@ class GFG
 		    int x = Integer.parseInt(val[0]);
 		    int y = Integer.parseInt(val[1]);
 		    int k = Integer.parseInt(val[2]);
-		    int c = arr[x][y];
+		    int c = arr[x][y];			 // color to be replaced
 		    floodFill(arr, m, n, x, y, k, c);    // calling floodFill
 		    for(int i=0; i<m; i++){              // printing new array
 		        for(int j=0; j<n; j++){
