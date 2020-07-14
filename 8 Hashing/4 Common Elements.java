@@ -38,7 +38,7 @@ Testcase1:  20 and 80 are the only common elements
 	given 3 arrays ( NOTE - input arrays as "Integer" not "int" )
 	
 	Step1 - Integer[] arr0 = new Integer[size[0]]   (similarly other 2)
-	Step2 - ArrayList<Integer> l0 = new ArrayList<>(Arrays.asList(arr0))  ( convert array -> arrayList * i.e, why we required Integer array *) (similarly other 2)
+	Step2 - ArrayList<Integer> l0 = new ArrayList<>(Arrays.asList(arr0))  ( convert array -> arrayList  * i.e, why we required Integer array *) (similarly other 2)
 	Step3 - Set<Integer> s0 = new LinkedHashSet<>(l0)                     ( convert list -> set ) ( similarly other 2 ) ( LinkedHashSet is used to make elements in order )
 	Step4 - Set<Integer> inter1 = new LinkedHashSet<>(s0)
 	        inter1.retainAll(s1)                                           ( intersection of s0 & s1 )
