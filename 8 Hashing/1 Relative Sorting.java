@@ -44,42 +44,35 @@ import java.io.*;
 
 class GFG
  {
-    public static void sortRel(int[] arr1, int[] arr2, int m, int n){
-        HashMap<Integer, Integer> map1 = new HashMap<Integer, Integer>();
-        HashMap<Integer, Integer> map2 = new HashMap<Integer, Integer>();
+     
+    public static void sortRel(int[] A1, int[] A2, int m, int n){
         
-        // hashing arr1[]
+        HashMap<Integer, Integer> map = new HashMap<>();
+        Set<Integer> st = new HashSet<>();
+        
+        // 1 mapping A1 and set A2
         for(int i=0; i<m; i++){
-            if(!map1.containsKey(arr1[i])) map1.put(arr1[i], 1);
-            else map1.put(arr1[i], map1.get(arr1[i])+1);
+            if(map.containsKey(A1[i])) map.put(A1[i], map.get(A1[i])+1);
+            else map.put(A1[i], 1);
         }
-        // hashing arr2[]
-        for(int i=0; i<n; i++) map2.put(arr2[i], 1);
+        for(int i=0; i<n; i++) st.add(A2[i]);
         
-        // matching elements of arr1[] with arr2[] and setting it to -999 and sort
-        for(int i=0; i<m; i++){
-            if(map2.containsKey(arr1[i])) arr1[i] = -999;
-        }
-        Arrays.sort(arr1);
+        // 2 filling -1 to A2 elements in A1    and then   sorting
+        for(int i=0; i<m; i++) if(st.contains(A1[i])) A1[i] = -1;
+        Arrays.sort(A1);
         
-        // inserting arr2[] elements in arr1[]
-        int i = 0;
-        int j = 0;
-        while(i < n){
-            if(!map1.containsKey(arr2[i])){
-                i++;
-                continue;
-            }
-            int x = map1.get(arr2[i]);
-            if(x == 0) i++;
-            else{
-                arr1[j] = arr2[i];
-                map1.put(arr2[i], x-1);
-                j++;
+        // 3 filling A2 elements in sorted A1 array
+        int k = 0;
+        for(int i=0; i<n; i++){
+            if(map.containsKey(A2[i])){
+                int freq = map.get(A2[i]);
+                while(freq-- > 0) A1[k++] = A2[i];
             }
         }
+        
+        // print
         StringBuilder sb = new StringBuilder();
-        for(int p : arr1) sb.append(p + " ");
+        for(int x : A1) sb.append(x + " ");
         System.out.println(sb);
     }
      
