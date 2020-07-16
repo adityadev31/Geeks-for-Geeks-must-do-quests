@@ -59,7 +59,7 @@ class GFG
         
         // 2 filling -1 to A2 elements in A1    and then   sorting
         for(int i=0; i<m; i++) if(st.contains(A1[i])) A1[i] = -1;
-        Arrays.sort(A1);
+        Arrays.sort(A1);					// -1 -1 -1 -1 -1 -1 -1 5 6 7 9
         
         // 3 filling A2 elements in sorted A1 array
         int k = 0;
