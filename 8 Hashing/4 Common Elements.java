@@ -100,3 +100,39 @@ class Main
 		}
 	}
 }
+
+
+
+
+/**
+
+S I M P L E R   W A Y
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        int[] A1 = {1,1,1,2,3,4,5,6,7,8};
+        int[] A2 = {3,4,5,6};
+        int[] A3 = {3,5,6,7,7,8};
+        
+        Set<Integer> st1 = new LinkedHashSet<>();
+        Set<Integer> st2 = new LinkedHashSet<>();
+        Set<Integer> st3 = new LinkedHashSet<>();
+        
+        for(int x : A1) st1.add(x);
+        for(int x : A2) st2.add(x);
+        for(int x : A3) st3.add(x);
+        
+        st1.retainAll(st2);
+        st1.retainAll(st3);
+        
+        for(int x : st1) System.out.print(x + " ");
+    }
+}
+
+
+// ans 3 5 6
+
+**/
