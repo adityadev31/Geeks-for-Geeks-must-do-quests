@@ -79,7 +79,7 @@ class Solution
             }
             else map.put(A[i-k], x-1);      // x > 1 means there were duplicates so reduce from map but not from set coz set will contain one too
             
-            // adding A[k]
+            // adding A[i]
             st.add(A[i]);
             if(map.containsKey(A[i])) map.put(A[i], map.get(A[i])+1);
             else map.put(A[i], 1);
