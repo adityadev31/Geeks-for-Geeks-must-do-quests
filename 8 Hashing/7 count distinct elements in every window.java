@@ -90,3 +90,50 @@ class Solution
         return list;
     }
 }
+
+
+
+/**
+
+W I T H O U T   S E T
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        int[] A = {1,2,1,3,4,2,3};
+        int k = 4;
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        // 1st k
+        for(int i=0; i<k; i++){
+            if(map.containsKey(A[i])) map.put(A[i], map.get(A[i])+1);
+            else map.put(A[i], 1);
+        }
+        list.add(map.size());
+        
+        // rest
+        for(int i=k; i<A.length; i++){
+            
+            // left part remove
+            int x = map.get(A[i-k]);
+            if(x == 1) map.remove(A[i-k]);
+            else map.put(A[i-k], map.get(A[i-k])-1);
+            
+            // right part add
+            if(map.containsKey(A[i])) map.put(A[i], map.get(A[i])+1);
+            else map.put(A[i], 1);
+            
+            // add ans
+            list.add(map.size());
+        }
+        
+        for(int x : list) System.out.print(x + " ");
+    }
+}
+
+// ans   3 4 4 3
+
+**/
