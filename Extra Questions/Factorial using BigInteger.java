@@ -11,6 +11,32 @@ similarly we can do all mathematical operations like add, div, mul, sub ;
 **/
 
 
+/**
+
+CodeChef Question (Small factorials Problem Code: FCTRL2)
+
+Example
+Sample input:
+
+4
+1
+2
+5
+3
+
+Sample output:
+
+1
+2
+120
+6
+
+
+
+
+**/
+
+
 import java.util.*;
 import java.io.IOException;
 import java.io.InputStreamReader;
