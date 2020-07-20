@@ -53,20 +53,23 @@ class Node
 
 class Tree
 {
-    static int count;
+    static int count = 0;
     
-    int countLeaves1(Node node){
-         if(node == null) return 0;
-         if(node.left == null && node.right == null) return 1;
-         int left = count + countLeaves1(node.left);
-         int right = count + countLeaves1(node.right);
-         return left+right;
+    void countLeaves1(Node root){
+        if(root == null) return;
+        if(root.left == null && root.right == null){
+            count += 1;
+            return;
+        }
+        countLeaves1(root.left);
+        countLeaves1(root.right);
     }
     
     int countLeaves(Node node) 
     {
-         int ans = countLeaves1(node);
-         count = 0;
-         return ans;
+        countLeaves1(node);
+        int ans = count;
+        count = 0;
+        return ans;
     }
 }
