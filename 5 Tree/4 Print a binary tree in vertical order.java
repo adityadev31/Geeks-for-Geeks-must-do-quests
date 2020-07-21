@@ -1,3 +1,21 @@
+/**
+
+    LEVEL ORDER APPROACH
+    
+    hd = keeps track of distance from root
+    
+    we need both parent node and parent's hd hence store Pair(node, hd)     Pair(node, hd)
+    
+    we need map to map nodes with hds         Map<hd, listOfNodes>
+    
+    step1 - q.add(Pair(parentNode->left, parentNode's hd-1))    // for left  hd-1
+          - q.add(Pair(parentNode->right, parentNode's hd+1))    // for left  hd+1
+    
+    step2 - update in map     map.put(new hd, node);
+
+**/
+
+
 /*class Node
 {
     int data;
