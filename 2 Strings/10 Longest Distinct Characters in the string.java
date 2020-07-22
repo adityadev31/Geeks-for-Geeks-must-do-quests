@@ -60,3 +60,52 @@ class GFG
 		}
 	}
 }
+
+
+
+
+/**
+			 ANOTHER WAY
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+ {
+     
+    public static void distMaxLen(String str){
+        Queue<Character> q = new LinkedList<>();
+        Set<Character> st = new HashSet<>();
+        int maxLen = 0;
+        
+        for(char x : str.toCharArray()){
+            if(!st.contains(x)){
+                q.add(x);
+                st.add(x);
+            }
+            else{
+                while(!q.isEmpty()){
+                    char t = q.poll();
+                    st.remove(t);
+                    if(t == x) break;
+                }
+                st.add(x);
+                q.add(x);
+            }
+            maxLen = Math.max(st.size(), maxLen);
+        }
+        System.out.println(maxLen);
+    }
+     
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0){
+		    String str = (br.readLine()).trim();
+		    distMaxLen(str);
+		}
+	}
+}
+
+
+**/
