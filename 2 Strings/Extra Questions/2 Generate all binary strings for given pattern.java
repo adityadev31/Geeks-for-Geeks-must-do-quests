@@ -4,6 +4,27 @@
 // binary strings formed by replacing 
 // each wildcard character by 0 or 1 
 
+
+/**
+
+ Approach - Recursion parameters(char[] str, int I)
+ 
+ Step1 - if(i == n) print str && return // base case
+ Step2 - if(str[i] == '?')
+                - set str[i] = '0'      // set 0
+                - call func(str, i+1);
+                - set str[i] = '1'      // set 1
+                - call func(str, i+1);
+                - str[i] = '?'          // bactrack and reset to '?'
+
+ Step3 - else (not '?') func(str, i+1) // move forward
+
+**/
+
+
+
+
+
 import java.util.*; 
 import java.lang.*; 
 import java.io.*; 
