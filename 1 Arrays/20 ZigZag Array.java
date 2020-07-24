@@ -82,3 +82,45 @@ class GFG
 		}
 	}
 }
+
+
+
+/**
+
+OR - 
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+ {
+    public static void zigzag(int[] arr, int n){
+        for(int i=0; i<n-1; i++){
+            if((i%2==0 && arr[i] > arr[i+1]) || (i%2==1 && arr[i] < arr[i+1])){       // even and odd
+                int temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int x : arr) sb.append(x + " ");
+        System.out.println(sb);
+    }
+     
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0){
+		    int n = Integer.parseInt(br.readLine());
+		    String str[] = br.readLine().trim().split("\\s+");
+		    int arr[] = new int[n];
+		    for(int i=0; i<n; i++){
+		        arr[i] = Integer.parseInt(str[i]);
+		    }
+		    zigzag(arr, n);
+		}
+	}
+}
+
+
+**/
