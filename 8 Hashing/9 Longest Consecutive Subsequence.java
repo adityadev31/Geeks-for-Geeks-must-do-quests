@@ -56,11 +56,11 @@ class GFG
             if(!st.contains(arr[i]-1)){    // means its the first element of a new subsequence
                 int x = arr[i], temp = 1;
                 while(1==1){
-                    if(!st.contains(x+1)){  // contains next element
+                    if(!st.contains(x+1)){  // does not contains next element i.e, its the last element
                         ans = Math.max(ans, temp);
                         break;
                     }
-                    else temp++;            // does not contains next element
+                    else temp++;            // contains next element
                     x++;
                 }
             }
