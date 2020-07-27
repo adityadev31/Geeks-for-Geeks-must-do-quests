@@ -61,16 +61,16 @@ class GFG
     public static void findPairs(int[] arr1, int[] arr2, int n, int m, int k){
         Set<Integer> st = new HashSet<>();
         StringBuilder sb = new StringBuilder();
-        for(int x : arr2) st.add(x);
-        Arrays.sort(arr1);
-        for(int x : arr1){
+        for(int x : arr2) st.add(x);				// step1 - hash all the elements of arr2
+        Arrays.sort(arr1);					// step2 - sort arr1 (coz, we need ans in sorted order)
+        for(int x : arr1){					// step3 - search for k-arr2[i] in set
             if(st.contains(k-x)){
                 sb.append(String.valueOf(x) + " " + String.valueOf(k-x) + ", ");
             }
         }
         int sz = sb.length();
         if(sz == 0) System.out.println(-1);
-        else System.out.println(sb.delete(sz-2, sz));
+        else System.out.println(sb.delete(sz-2, sz));          // remove last comma and space
     }
      
 	public static void main (String[] args) throws IOException{
