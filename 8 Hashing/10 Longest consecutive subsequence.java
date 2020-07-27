@@ -58,9 +58,9 @@ class GFG
     
     step1  -  inset into set;
     step2  -  iterate array and check whether its prev num is present in set or not
-                    - if(present) -->  its not the starting of the subarray
+                    - if(present) -->  its not the starting of the subarray (arr[i]-1)
                     - if(not)     -->  its the starting of the subarray
-    step3  -  if(its start point) check for the presence of arr[i]+1 till the end and keep comparing with max len
+    step3  -  if(its start point) check for the presence of (arr[i]+1) till the end and keep comparing with max len
     step4  - return max len
     
     **/
