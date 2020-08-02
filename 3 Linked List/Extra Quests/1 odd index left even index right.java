@@ -1,5 +1,7 @@
 /**
 
+url - https://leetcode.com/problems/odd-even-linked-list/
+
 question - 1 indexed LL is given
 
 we have to arrange it such that odd indexed elements remain left side 
@@ -52,7 +54,7 @@ public class Main {
         
         tail = end;
         
-        while(prev != end){
+        while(prev != end.next && prev != end){     // stopping case for both even & odd cases
             tail.next = new Node(prev.next.data);   // append at the tail
             tail = tail.next;                       // increment tail 
             prev.next = prev.next.next;             // prev->next = prev->next->next;  connect index odd <--> odd
