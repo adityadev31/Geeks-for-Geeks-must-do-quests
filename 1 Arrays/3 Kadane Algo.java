@@ -67,3 +67,36 @@ class GFG {
 		}
 	}
 }
+
+
+
+/*      O R
+
+
+import java.io.*;
+
+class GFG {
+    
+	public static void main (String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine().trim()); //Inputting the testcases
+		while(t-->0){
+		    int n = Integer.parseInt(br.readLine().trim());
+		    int arr[] = new int[n];
+		    String inputLine[] = br.readLine().trim().split(" ");
+		    for(int i=0; i<n; i++) arr[i] = Integer.parseInt(inputLine[i]);
+		    
+		    // kadanes algorithm
+		    int localSum = arr[0];
+		    int globalSum = arr[0];
+		    for(int i=1; i<n; i++){
+			localSum = Integer.max(localSum+arr[i], arr[i]);
+			globalSum = Integer.max(localSum, globalSum);
+		    }
+		    System.out.println(globalSum);
+		}
+	}
+}
+
+
+*/
