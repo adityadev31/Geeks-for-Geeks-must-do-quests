@@ -33,7 +33,6 @@ Testcase 2: geeksgeeksfor can't be formed by any rotation from the given word ge
 
 
 import java.util.*;
-import java.lang.*;
 import java.io.*;
 class GFG
  {
@@ -41,37 +40,33 @@ class GFG
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int t = Integer.parseInt(br.readLine());
 		while(t-->0){
-		    String s1 = br.readLine();
-		    String s2 = br.readLine();
+		    String str1 = br.readLine().trim();
+		    String str2 = br.readLine().trim();
+		    int n = str1.length();
+		    int found = 0;
 		    
-		    int n = s1.length();
-		    
-		    boolean flag = true;
-		    
-		    // anticlockwise
+		    // assuming anticlockwise rotated str2
 		    for(int i=0; i<n; i++){
-		        if(s2.charAt(i)!=s1.charAt((i+2)%n)){
-		            flag = false;
+		        if(str1.charAt((i+2)%n) != str2.charAt(i)){
+		            found = 0;
 		            break;
 		        }
+		        if(i == n-1) found = 1;
 		    }
 		    
-		    if(flag == true) System.out.println(1);
-		    if(flag == false){
-		        
-		        flag = true;
-    		    // clockwise
-    		    for(int i=0; i<n; i++){
-    		        if(s1.charAt(i)!=s2.charAt((i+2)%n)){
-    		            flag = false;
+		    
+		    // assuming clockwise rotated str2
+		    if(found == 0){
+		        for(int i=0; i<n; i++){
+    		        if(str1.charAt((n-2+i)%n) != str2.charAt(i)){
+    		            found = 0;
     		            break;
     		        }
+    		        if(i == n-1) found = 1;
     		    }
-    		    
-    		    if(flag == true) System.out.println(1);
-    		    else System.out.println(0);
 		    }
 		    
+		    System.out.println(found);
 		}
 	}
 }
