@@ -58,12 +58,12 @@ class GFG
 		    // assuming clockwise rotated str2
 		    if(found == 0){
 		        for(int i=0; i<n; i++){
-    		        if(str1.charAt((n-2+i)%n) != str2.charAt(i)){
-    		            found = 0;
-    		            break;
-    		        }
-    		        if(i == n-1) found = 1;
-    		    }
+				if(str1.charAt((n-2+i)%n) != str2.charAt(i)){
+				    found = 0;
+				    break;
+				}
+				if(i == n-1) found = 1;
+			    }
 		    }
 		    
 		    System.out.println(found);
