@@ -91,3 +91,65 @@ coz -
 2nd iteration - mpie
 
 **/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+
+
+			2 nd    w a y
+			
+
+
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+ {
+    public static void dupli(String str, int n, StringBuilder sb){
+        boolean charged = false;
+        for(int i=0; i<n; i++){
+            if(sb.length() > 0){
+                if(sb.charAt(sb.length()-1) == str.charAt(i)) charged = true;     // if current str.char == last element of sb ---> make charged activated and don't insert that element
+                else{
+                    if(charged){                                                  // if element doesn't match (but charge is active) remove the last element of sb and add the new one
+                        sb.delete(sb.length()-1, sb.length());
+                        charged = false;
+                    }
+                    sb.append(str.charAt(i));                                     // no match, no charge --> add new element to sb
+                }
+            }
+            else sb.append(str.charAt(i));                                        // if nothing inside sb --> insert the new element 
+        }
+        if(charged && sb.length()>0) sb.delete(sb.length()-1, sb.length());       // left over if charge is active 
+        if(sb.length() == str.length()){					  // if even after operations we have str == sb --> we are done 
+            System.out.println(sb);
+            return;
+        }
+        else dupli(sb.toString(), sb.length(), new StringBuilder());              // else do it again!!
+    }
+     
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0){
+		    String str = br.readLine().trim();
+		    dupli(str, str.length(), new StringBuilder());
+		}
+	}
+}
+
+
+**/
