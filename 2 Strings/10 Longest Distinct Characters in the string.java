@@ -64,6 +64,52 @@ class GFG
 
 
 
+
+
+
+
+/**
+			 ANOTHER WAY
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+ {
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0){
+		    String str = br.readLine().trim();
+		    int n = str.length();
+		    int maxLen = Integer.MIN_VALUE;
+		    String ans = "";
+		    for(int i=0; i<n; i++){
+		        if(ans.contains(str.substring(i, i+1))){
+		            maxLen = Integer.max(maxLen, ans.length());
+		            int l = ans.indexOf(str.charAt(i));
+		            ans = ans.substring(l+1) + str.charAt(i);
+		        }
+		        else ans += str.charAt(i);
+		    }
+		    maxLen = Integer.max(maxLen, ans.length());
+		    System.out.println(maxLen);
+		}
+	}
+}
+
+**/
+
+
+
+
+
+
+
+
+
+
 /**
 			 ANOTHER WAY
 
