@@ -64,7 +64,7 @@ public class Main {
     public static boolean detectLoop(Node head){
         Node fast = head;
         Node slow = head;
-        while(slow.next != null && fast != null && fast.next != null){
+        while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
             if(slow == fast) return true;
