@@ -36,40 +36,18 @@ Testcase 1: After swapping each pair considering (1,2), (2, 4), (5, 6).. so on a
 
 class Solution {
     
-    public void reverseK(Node head, int k){
-        if(k == 1 || head.next == null) return;
-        reverseK(head.next, k-1);
-        head.next.next = head;
-        head.next = null;
-        return;
-    }
-    
     public Node pairwiseSwap(Node head)
     {
-        Stack<Node> low = new Stack<Node>();
-        Stack<Node> low1 = new Stack<Node>();
-        Stack<Node> high = new Stack<Node>();
-        
-        int i=1, k=2;
-        Node trav = head;
-        while(trav != null){
-            if(i==1){
-                low.push(trav);
-                low1.push(trav);
-            }
-            if(i==k || trav.next == null){
-                high.push(trav);
-                i=0;
-            }
-            i++;
-            trav = trav.next;
-        }
-        
-        while(!low1.isEmpty()) reverseK(low1.pop(), k);
-        
-        low.pop();
-        while(!low.isEmpty()) low.pop().next = high.pop();
-        
-        return high.pop();
+       Node prev = null, current = head, ahead = null;
+       int count = 0;
+       while(current!=null && count<2){
+           ahead = current.next;
+           current.next = prev;
+           prev = current;
+           current = ahead;
+           count++;
+       }
+       if(current!=null) head.next = pairwiseSwap(current);
+       return prev;
     }
 }
