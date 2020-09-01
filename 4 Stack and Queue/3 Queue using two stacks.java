@@ -58,23 +58,18 @@ class StackQueue
 
     /* The method insert to push element
        into the queue */
-    void Push(int x)        // enqueue mode should be on!
+    void Push(int x)
     {
-	   if(s1.isEmpty() && !s2.isEmpty()){                // dequeue mode is on!
-	        while(!s2.isEmpty()){ s1.push(s2.pop()); }   // now in enqueue mode  
-	   }
-	   s1.push(x);        // else already in enqueue mode
+	   s1.push(x);
     }
 	
     
-    /* The method remove which return the
-      element popped out of the queue*/
     int Pop()
     {
-	   if(!s1.isEmpty() && s2.isEmpty()){                // enqueue mode is on!
-	        while(!s1.isEmpty()){ s2.push(s1.pop()); }   // now in dequeue mode  
-	   }
-	   if(s1.isEmpty() && s2.isEmpty()) return -1;
-	   return s2.pop();        // else already in dequeue mode
+	   while(!s1.empty()) s2.push(s1.pop());
+	   if(s2.empty()) return -1;
+	   int k = s2.pop();
+	   while(!s2.empty()) s1.push(s2.pop());
+	   return k;
     }
 }
