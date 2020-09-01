@@ -101,7 +101,7 @@ class GFG
 
 
 /*
-			S A M E    C O D E 
+			S A M E    C O D E   B E T T E R    W A Y
 
 import java.util.*;
 import java.lang.*;
