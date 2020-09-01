@@ -93,3 +93,54 @@ class GFG
 		}
 	}
 }
+
+
+
+
+
+
+
+/*
+			S A M E    C O D E 
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+ {
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0){
+		    int n = Integer.parseInt(br.readLine());
+		    String str[] = br.readLine().trim().split("\\s+");
+		    long arr[] = new long[n];
+		    for(int i=0; i<n; i++) arr[i] = Long.parseLong(str[i]);
+		    // code 
+		    
+		    Stack<Integer> st = new Stack<>();
+		    long ans[] = new long[n];
+		    Arrays.fill(ans, -1);
+		    for(int i=0; i<n; i++){
+		        if(st.empty()) st.push(i);
+		        else if(!st.empty()){
+		            if(arr[st.peek()] >= arr[i]) st.push(i);
+		            else{
+		                while(!st.empty() && arr[st.peek()]<=arr[i]) ans[st.pop()] = arr[i];
+		                st.push(i);
+		            }
+		        }
+		    }
+		    
+		    StringBuilder sb = new StringBuilder();
+		    for(long x : ans) sb.append(x + " ");
+		    System.out.println(sb);
+		}
+	}
+}
+
+
+
+
+
+*/
