@@ -39,33 +39,24 @@ Testcase 1: there are 4 petrol pumps with amount of petrol and distance to next 
 
 
 
-import java.util.*;
-
- class Main
- {
-   public static int tour(int[] petrol, int[] dist){
-     int pSoFar = 0, dSoFar = 0, start = 0, end = 0;
-     int n = petrol.length;
-     while(start < n){
-       pSoFar += petrol[end];
-       dSoFar += dist[end];
-       if(pSoFar < dSoFar){
-         pSoFar = 0;
-         dSoFar = 0;
-         start++;
-         end = start;
-         continue;
-       }
-       if((end+1)%n == start) return start;
-       end = (end+1)%n;
-     }
-     return -1;
-   }
-   
-   public static void main(String args[])
-   { 
-    int[] petrol = {87,40,71,79,2,3,93,57,81,42,90,20,30};
-    int[] dist = {27,95,96,35,68,98,18,53,2,87,66,45,41};
-    System.out.println(tour(petrol, dist));
-   }
- }
+class GfG
+{
+    int tour(int petrol[], int distance[])
+    {
+        int N = petrol.length;
+        int remPetrol = 0;
+        int i=0, counter = 0;     // counter is like = hour hand and i = minute hand
+        while(counter<N){
+            remPetrol += petrol[i] - distance[i];
+            if(remPetrol < 0){          // if no petrol remain if we travel
+                counter++;              // increase counter
+                i = counter;            // lets start with updated counter
+                remPetrol = 0;          // reset remPetrol
+                continue;               
+            }
+            else if((i+1)%N == counter) return counter;   // if petrol is remaining and its the end of the circle (coz we started from counter and ending with counter with next move)
+            else i = (i+1)%N;                             // if its not the end circularly upgrade i 
+        }
+        return -1;
+    }
+}
