@@ -54,7 +54,7 @@ class GfG
                 remPetrol = 0;          // reset remPetrol
                 continue;               
             }
-            else if((i+1)%N == counter) return counter;   // if petrol is remaining and its the end of the circle (coz we started from counter and ending with counter with next move)
+            else if((i+1)%N == counter) return counter;   // if petrol is remaining and its the end of the circle (coz we started from counter and ending with counter with next move) return starting of the clock i.e, counter
             else i = (i+1)%N;                             // if its not the end circularly upgrade i 
         }
         return -1;
