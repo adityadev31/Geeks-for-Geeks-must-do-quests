@@ -88,3 +88,72 @@ class BinaryTree
         return l1;
     }
 }
+
+
+
+/**
+
+                    -- A L S O --
+                    
+
+
+
+class BinaryTree
+{
+    static class Pair{
+        Node N;
+        int lev;
+        Pair(Node N, int lev){
+            this.N = N;
+            this.lev = lev;
+        }
+    }
+    
+    static class MapSort implements Comparator<Map.Entry<Integer, ArrayList<Integer>>>{
+        public int compare(Map.Entry<Integer, ArrayList<Integer>> e1, Map.Entry<Integer, ArrayList<Integer>> e2){
+            return e1.getKey()-e2.getKey();
+        }
+    }
+    
+    static ArrayList<Integer> levelOrder(Node root){
+        Queue<Pair> q = new LinkedList<>();
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        q.add(new Pair(root, 0));
+        map.put(0, new ArrayList<>());
+        map.get(0).add(root.data);
+        while(!q.isEmpty()){
+            Pair p = q.poll();
+            int l = p.lev;
+            Node N = p.N;
+            if(N.left != null){
+                q.add(new Pair(N.left, l-1));
+                if(!map.containsKey(l-1)) map.put(l-1, new ArrayList<>());
+                map.get(l-1).add(N.left.data);
+            }
+            if(N.right != null){
+                q.add(new Pair(N.right, l+1));
+                if(!map.containsKey(l+1)) map.put(l+1, new ArrayList<>());
+                map.get(l+1).add(N.right.data);
+            }
+        }
+        
+        // sort
+        ArrayList<Map.Entry<Integer, ArrayList<Integer>>> list = new ArrayList<>(map.entrySet());
+        Collections.sort(list, new MapSort());
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(Map.Entry<Integer, ArrayList<Integer>> x: list){
+            for(int y : x.getValue()) ans.add(y);
+        }
+        return ans;
+    }
+    
+    static ArrayList <Integer> verticalOrder(Node root)
+    {
+        return levelOrder(root);
+    }
+}
+
+
+
+
+**/
