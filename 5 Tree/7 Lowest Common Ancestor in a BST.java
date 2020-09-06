@@ -87,3 +87,34 @@ class BST
     }
     
 }
+
+
+
+/*
+
+			~~ O R ~~
+			
+			
+class BST
+{   
+	Node LCA(Node root, int n1, int n2)
+	{
+	    if(n2>n1){			// making sure that n1 < n2
+	        int temp = n1;
+	        n1 = n2;
+	        n2 = temp;
+	    }
+        while(root != null){
+            if(root.data > n1 && root.data > n2) root = root.left;          // both left side
+            else if(root.data < n1 && root.data < n2) root = root.right;    // both right side
+            else if(root.data == n1 || root.data == n2) return root;        // if anyone matches
+            else if(root.data > n1 && root.data < n2) return root;          // if n1 in left && n2 in right
+            else break;
+        }
+        return root;        // return root
+    }
+    
+}
+
+
+*/
