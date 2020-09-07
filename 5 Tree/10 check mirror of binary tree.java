@@ -111,3 +111,26 @@ class GfG
         return helper(root, root);
     }
 }
+
+
+/*                          B E T T E R   W A Y
+
+class GfG
+{
+    public static boolean checker(Node root1, Node root2){
+        if(root1==null && root2==null) return true;
+        if((root1==null && root2!=null) || (root1!=null && root2==null)) return false;
+        if(root1!=null && root2!=null){
+            if(root1.data == root2.data) return checker(root1.left, root2.right);
+            else return false;
+        }
+        return false;
+    }
+    
+    public static boolean isSymmetric(Node root)
+    {
+        return checker(root, root);
+    }
+}
+
+*/
