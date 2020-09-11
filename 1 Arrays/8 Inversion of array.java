@@ -98,3 +98,71 @@ class GFG {
 		}
 	}
 }
+
+
+
+
+
+
+
+
+/**
+
+		B E T T E R    W A Y 
+		
+
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+class GFG
+ {
+    public static long count;
+    
+    public static void merge(int[] arr, int l, int m, int r){
+        int n1 = m-l+1;
+        int n2 = r-m;
+        int[] arr1 = new int[n1];
+        int[] arr2 = new int[n2];
+        for(int i=0; i<n1; i++) arr1[i] = arr[i+l];
+        for(int j=0; j<n2; j++) arr2[j] = arr[j+m+1];
+        int i=0, j=0, k=l;
+        while(i<n1 && j<n2){
+            if(arr1[i]<=arr2[j]) arr[k++] = arr1[i++];
+            else{
+                arr[k++] = arr2[j++];
+                count += n1-i;
+            }
+        }
+        while(i<n1) arr[k++] = arr1[i++];
+        while(j<n2) arr[k++] = arr2[j++];
+    }
+     
+    public static void mergeSort(int[] arr, int l, int r){
+        if(l>=r) return;
+        int m = (l+r)/2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
+    }
+     
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0){
+		    int n = Integer.parseInt(br.readLine());
+		    String str[] = br.readLine().trim().split("\\s+");
+		    int arr[] = new int[n];
+		    for(int i=0; i<n; i++) arr[i] = Integer.parseInt(str[i]);
+		    // call function
+	        mergeSort(arr, 0, n-1);
+		    System.out.println(count);
+		    count = 0;
+		}
+	}
+}
+
+
+
+
+**/
