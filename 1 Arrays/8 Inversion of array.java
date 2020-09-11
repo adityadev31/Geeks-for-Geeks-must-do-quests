@@ -129,7 +129,7 @@ class GFG
         int i=0, j=0, k=l;
         while(i<n1 && j<n2){
             if(arr1[i]<=arr2[j]) arr[k++] = arr1[i++];
-            else{
+            else{						// when arr2[j] < arr1[i]  count += n1-i;       i.e. all the elements of arr1 after ith position (including i) will be swapped
                 arr[k++] = arr2[j++];
                 count += n1-i;
             }
