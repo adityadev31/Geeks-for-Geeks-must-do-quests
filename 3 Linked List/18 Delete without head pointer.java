@@ -47,38 +47,21 @@ Testcase 2: After deleting 20 from the linked list, we have remaining nodes as 1
 
 A P P R O A C H --
  
-     -   node.data = node.next.data                  keep going till 2nd last position
-     -   if(2nd last pos) node.next = null           just delete the reference
+     -   node.data = node.next.data                  
+     -   node.next = node.next.next
+     -   delete the forgotten node
 
 **/
 
 
 
-class Node
-{
-	int data ;
-	Node next;
-	Node(int d)
-	{
-		data = d;
-		next = null;
-	}
-}
-
-// This function should delete node from linked list. The function
-// may assume that node exists in linked list and is not last node
-// node: reference to the node which is to be deleted
-
 class GfG
 {
     void deleteNode(Node node)
     {
-         Node trav = node;
-         while(trav!=null && trav.next!=null){
-             trav.data = trav.next.data;
-             if(trav.next.next == null) trav.next = null; // 2nd last position
-             trav = trav.next;
-         }
+	Node temp = node.next;
+        node.data = node.next.data;
+        node.next = node.next.next;
+        temp.next = null;
     }
 }
-
