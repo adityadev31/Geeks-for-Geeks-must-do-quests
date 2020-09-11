@@ -47,9 +47,7 @@ Testcase 2: In the second testcase only two pop operations will be performed and
 
 
 
-
 /*
-The structure of the node of the stack is
 class StackNode
 {
     int data;
@@ -63,25 +61,18 @@ class StackNode
 */
 class MyStack {
 
-    // Note that top is by default null
-    // in Java
     StackNode top;
 
     void push(int a) {
-        StackNode temp = new StackNode(a);
-        if(top == null){
-            top = temp;
-        }else{
-            temp.next = top;
-            top = temp;
-        }
+        StackNode newNode = new StackNode(a);
+        newNode.next = top;
+        top = newNode;
     }
     int pop() {
-        if(top == null) return -1;
-        else{
-            int x = top.data;
-            top = top.next;
-            return x;
-        }
+        if(top==null) return -1;
+        StackNode prev = top;
+        top = top.next;
+        prev.next = null;
+        return prev.data;
     }
 }
