@@ -155,7 +155,7 @@ class GFG
 		    int arr[] = new int[n];
 		    for(int i=0; i<n; i++) arr[i] = Integer.parseInt(str[i]);
 		    // call function
-	        mergeSort(arr, 0, n-1);
+	            mergeSort(arr, 0, n-1);
 		    System.out.println(count);
 		    count = 0;
 		}
