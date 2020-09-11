@@ -47,38 +47,20 @@ Testcase 1: After merging two non-decreasing arrays, we have, 0 1 2 3 5 6 7 8 9.
 
 
 
-import java.io.*;
+class Solution {
 
-public class Main{
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(br.readLine().trim());
-        while(t-- > 0){
-            String size[] = br.readLine().trim().split("\\s+");
-            String str1[] = br.readLine().trim().split("\\s+");
-            String str2[] = br.readLine().trim().split("\\s+");
-            
-            int n = Integer.parseInt(size[0]);
-            int m = Integer.parseInt(size[1]);
-            
-            int[] arr1 = new int[n];
-            int[] arr2 = new int[m];
-            
-            for(int i=0; i<n; i++) arr1[i] = Integer.parseInt(str1[i]);
-            for(int i=0; i<m; i++) arr2[i] = Integer.parseInt(str2[i]);
-            
-            // solution
-            
-            StringBuilder sb = new StringBuilder();
-            int i=0, j=0;
-            while(i<n && j<m){
-                if(arr1[i]<arr2[j]) sb.append(arr1[i++]+" ");
-                else sb.append(arr2[j++]+" ");
+    public void merge(int arr1[], int arr2[], int n, int m) {
+        int i=n-1, j=0;
+        while(i>=0 && j<m){
+            if(arr1[i] > arr2[j]) {              // if arr1[i]<arr2[j] --> swap
+                int temp = arr1[i];
+                arr1[i] = arr2[j];
+                arr2[j] = temp;
             }
-            while(i<n) sb.append(arr1[i++]+" ");
-            while(j<m) sb.append(arr2[j++]+" ");
-            System.out.println(sb);
+            i--;
+            j++;
         }
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
     }
 }
-
