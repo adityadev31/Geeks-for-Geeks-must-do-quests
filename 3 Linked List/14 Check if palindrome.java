@@ -34,43 +34,18 @@ Testcase 2: The given linked list is 1 2 3 4 , which is not a pallindrome and He
 
 **/
 
-
 class Palindrome
 {
-    // reverse
-    Node reverse(Node head){
-        if(head.next == null || head == null) return head;
-        Node newHead = reverse(head.next);
-        head.next.next = head;
-        head.next = null;
-        return newHead;
-    }
-    
-    
     // Function to check if linked list is palindrome
     boolean isPalindrome(Node head) 
     {
-        // copying head in new linked list
+        StringBuilder sb = new StringBuilder();
         Node trav = head;
-        Node reversed = new Node(trav.data);
-        Node revTail = reversed;
-        trav = trav.next;
-        
-        while(trav != null){
-            revTail.next = new Node(trav.data);
-            revTail = revTail.next;
+        while(trav!=null){
+            sb.append(trav.data);
             trav = trav.next;
         }
-        
-        // reversing new linked list
-        reversed = reverse(reversed);
-        
-        // matching one by one
-        while(head != null){
-            if(head.data != reversed.data) return false;
-            head = head.next;
-            reversed = reversed.next;
-        }
-        return true;
+        String x = sb.toString();
+        return x.equals(sb.reverse().toString());
     }    
 }
