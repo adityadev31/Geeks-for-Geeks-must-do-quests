@@ -71,18 +71,18 @@ class GFG
 		    
 		    // call function
 		    
-		    // DeQue must have indices of arrays values in descending order
+		    // DeQue must have indices of arrays values in descending order   like - 11 10 7 4 2  (decreasing order) if new element is greater remove the smaller ones from the Deque
 		    
 		    Deque<Integer> dq = new LinkedList<>();
 		    StringBuilder sb = new StringBuilder();
 		    for(int i=0; i<k; i++){
-		        while(!dq.isEmpty() && arr[dq.peekLast()]<arr[i]) dq.removeLast();
+		        while(!dq.isEmpty() && arr[dq.peekLast()]<arr[i]) dq.removeLast();   // removing smaller elements
 		        dq.addLast(i);
 		    }
 		    for(int i=k; i<n; i++){
 		        sb.append(arr[dq.peekFirst()]+" ");
-		        while(!dq.isEmpty() && dq.peekFirst()<=i-k) dq.removeFirst();
-		        while(!dq.isEmpty() && arr[dq.peekLast()]<arr[i]) dq.removeLast();
+		        while(!dq.isEmpty() && dq.peekFirst()<=i-k) dq.removeFirst();		// removing out of window elements
+		        while(!dq.isEmpty() && arr[dq.peekLast()]<arr[i]) dq.removeLast();      // removing smaller elements
 		        dq.addLast(i);
 		    }
 		    sb.append(arr[dq.peekFirst()]);
