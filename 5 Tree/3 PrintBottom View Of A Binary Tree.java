@@ -133,3 +133,78 @@ class Tree
         return levelorder(root);
     }
 }
+
+
+
+
+
+
+
+
+/**
+
+
+
+          O R 
+          
+          
+          
+//User function Template for Java
+
+// class Node
+// {
+//     int data; //data of the node
+//     int hd; //horizontal distance of the node
+//     Node left, right; //left and right references
+ 
+//     // Constructor of tree node
+//     public Node(int key)
+//     {
+//         data = key;
+//         hd = Integer.MAX_VALUE;
+//         left = right = null;
+//     }
+// }
+
+
+class Tree
+{
+ 
+    public class WtComp implements Comparator<Map.Entry<Integer, Node>>{
+        public int compare(Map.Entry<Integer, Node> e1, Map.Entry<Integer, Node> e2){
+            return e1.getKey()-e2.getKey();
+        }
+    }
+    
+    public ArrayList <Integer> bottomView(Node root)
+    {
+        HashMap<Integer, Node> map = new HashMap<>();
+        Queue<Node> q = new LinkedList<>();
+        root.hd = 0;
+        q.add(root);
+        map.put(0, root);
+        while(!q.isEmpty()){
+            Node x = q.poll();
+            if(x.left!=null){
+                x.left.hd = x.hd-1;
+                q.add(x.left);
+                map.put(x.left.hd, x.left);
+            }
+            if(x.right!=null){
+                x.right.hd = x.hd+1;
+                q.add(x.right);
+                map.put(x.right.hd, x.right);
+            }
+        }
+        ArrayList<Map.Entry<Integer, Node>> list = new ArrayList<>(map.entrySet());
+        Collections.sort(list, new WtComp());
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(Map.Entry<Integer, Node> x : list) ans.add(x.getValue().data);
+        return ans;
+    }
+}
+
+
+
+
+**/
