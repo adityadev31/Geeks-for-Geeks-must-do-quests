@@ -37,82 +37,57 @@ Testcase 1: Starting from first subarray of size k = 3, we have 3 as maximum. Mo
 
 
 
-
-
-
-
-import java.util.*;
-import java.io.*;
-
 /*          ALGO
 
-1) First process first k elements.
-1.1 While queue is not empty:
-check if the current element is greater than the 
-rear element.If yes then then remove rear element. (BASCIALLY check for descending
-sorted order).
- Now add the INDEX of cur element to the rear.(Now there won't any rear element less than the current element .)
-
-After coming out of the loop print the peek for the first window.
-
-2) Now for the remaining elements.
-2.2 Now remove the elements which no longer exist in the current window from the front of the queue.
-2.3 Repeat 1.1
-2.4 Print the peek for the current window.
+Algorithm :
+1. Create a deque to store k elements.
+2. Run a loop and insert first k elements in the deque. While inserting the element if the element at the back of the queue is smaller than the current element remove all those elements and then insert the element.
+3. Now, run a loop from k to end of the array.
+4. Print the front element of the array
+5. Remove the element from the front of the queue if they are out of the current window.
+6. Insert the next element in the deque. While inserting the element if the element at the back of the queue is smaller than the current element remove all those elements and then insert the element.
+7. Print the maximum element of the last window.
 
 */
 
 
-public class Main
-{
-	public static void main(String[] args) throws Exception
-	{
+import java.util.Deque;
+import java.util.LinkedList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+class GFG
+ {
+	public static void main (String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int t = Integer.parseInt(br.readLine());
-		while(t-->0)
-		{
-		   String sizes[] = br.readLine().split(" ");
-		   int n = Integer.parseInt(sizes[0]);
-		   int k = Integer.parseInt(sizes[1]);
-		   
-		   String s[] = br.readLine().split(" ");
-		   int a[] = new int[n];
-		   for(int i =0;i<n;i++)
-		    a[i] = Integer.parseInt(s[i]);
+		while(t-->0){
+		    String siz[] = br.readLine().trim().split("\\s+");
+		    String str[] = br.readLine().trim().split("\\s+");
+		    int n = Integer.parseInt(siz[0]);
+		    int k = Integer.parseInt(siz[1]);
+		    int arr[] = new int[n];
+		    for(int i=0; i<n; i++) arr[i] = Integer.parseInt(str[i]);
 		    
-		    maxOfWindow(a,n,k);
-
-		 }
-		        
+		    // call function
+		    
+		    // DeQue must have indices of arrays values in descending order
+		    
+		    Deque<Integer> dq = new LinkedList<>();
+		    StringBuilder sb = new StringBuilder();
+		    for(int i=0; i<k; i++){
+		        while(!dq.isEmpty() && arr[dq.peekLast()]<arr[i]) dq.removeLast();
+		        dq.addLast(i);
+		    }
+		    for(int i=k; i<n; i++){
+		        sb.append(arr[dq.peekFirst()]+" ");
+		        while(!dq.isEmpty() && dq.peekFirst()<=i-k) dq.removeFirst();
+		        while(!dq.isEmpty() && arr[dq.peekLast()]<arr[i]) dq.removeLast();
+		        dq.addLast(i);
+		    }
+		    sb.append(arr[dq.peekFirst()]);
+		    System.out.println(sb);
+		    
+		}
 	}
-	
-	static void maxOfWindow(int a[],int n,int k)
-	{   int i;
-	    Deque<Integer> q = new LinkedList<>();
-	    StringBuffer sb = new StringBuffer();
-	    for(i=0;i<k;i++)
-	    {
-	        while(!q.isEmpty() && a[i]>a[q.peekLast()])
-	            q.removeLast();
-	       q.addLast(i);
-	        
-	    }
-	    
-	    sb.append(a[q.peek()]+" ");
-	    
-	    for(;i<n;i++)
-	    {
-	        while(!q.isEmpty() && q.peek() <= i-k )
-	            q.removeFirst();
-	            
-	        while(!q.isEmpty() && a[i]>a[q.peekLast()])
-	            q.removeLast();
-	       q.addLast(i);
-	       
-	       sb.append(a[q.peek()]+" ");
-	    }
-	    
-	    System.out.println(sb);
-	}
-    
 }
