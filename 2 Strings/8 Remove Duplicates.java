@@ -27,6 +27,32 @@ geks for
 **/
 
 
+
+// B E T T E R   W A Y 
+
+class Solution {
+    String removeDups(String S) {
+        boolean visited[] = new boolean[26];
+        int n = S.length();
+        S = S.toLowerCase();
+        int x;
+        String ans = "";
+        for(int i=0; i<n; i++){
+            x = S.charAt(i)-97;
+            if(!visited[x]){
+                ans += S.charAt(i);
+                visited[x] = true;
+            }
+        }
+        return ans;
+    }
+}
+
+
+
+
+/ **
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -49,3 +75,5 @@ class GFG
 		}
 	}
 }
+
+**/
