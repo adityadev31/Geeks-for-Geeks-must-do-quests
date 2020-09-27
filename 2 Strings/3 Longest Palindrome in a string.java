@@ -64,10 +64,11 @@ class GFG
         
 
 	// tracking word
+	String answer;
 	ansi--;
-	while(result-->0) answer += str1.charAt(ansi--);
+	while(result-->0) answer += s1.charAt(ansi--);
 	if(answer.equals(new StringBuilder(answer).reverse().toString())) System.out.println(answer);
-	else System.out.println(str1.charAt(0));
+	else System.out.println(s1.charAt(0));
         
     }
      
