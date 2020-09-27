@@ -42,53 +42,33 @@ import java.io.*;
 **/
 
 
-class Result{
-    public int len;
-    public int i;
-    public int j;
-    Result(){
-        this.len = Integer.MIN_VALUE;
-        this.i = -1;
-        this.j = -1;
-    }
-}
-
 
 class GFG
  {
     public static String LCS(String s1, String s2, int n, int m, int[][] store){
-        Result result = new Result();
+        int result = Integer.MIN_VALUE, ansi=-1, ansj=-1;
         for(int i=1; i<=n; i++){
             for(int j=1; j<=m; j++){
                 if(s1.charAt(i-1)==s2.charAt(j-1)){		// if char matches then store + 1 and compare with result
                     store[i][j] = 1 + store[i-1][j-1];
                     if(store[i][j] > result.len){      // resetting result with our new answers if store > result
-                        result.len = store[i][j];
-                        result.i = i;
-                        result.j = j;
+                        result = store[i][j];
+                        ansi = i;
+                        ansj = j;
                     }
                 }
                 else store[i][j]=0;
             }
         }
         
-        if(result.len == 0) return "no match";   // just in case
         
-        StringBuilder sb = new StringBuilder();
+
+	// tracking word
+	ansi--;
+	while(result-->0) answer += str1.charAt(ansi--);
+	if(answer.equals(new StringBuilder(answer).reverse().toString())) System.out.println(answer);
+	else System.out.println(str1.charAt(0));
         
-        int i=result.i, j=result.j;
-        while(i>=0 && j>=0){
-            if(store[i][j]==0) break;
-            else{
-                sb.append(s1.charAt(i-1));  // i-1 coz store[][] was actually i+1 && j+1
-                i--; j--;
-            }
-        }
-        
-        String check1 = sb.toString();
-        String check2 = sb.reverse().toString();
-        if(check1.equals(check2)) return check1;   // checking if check1 == check2
-        else return s1.substring(0,1);             // if no then return Ist char of s1
     }
      
     public static String LCS(String s1, String s2){
