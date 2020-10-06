@@ -42,6 +42,62 @@ page number 5 is required which replaces LRU 3: page fault = 7 + 1  =8.
 **/
 
 
+
+
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Set;
+import java.util.LinkedHashSet;
+import java.util.Iterator;
+
+public class Main{
+    
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        while(t-->0){
+            int n = Integer.parseInt(br.readLine());
+            String[] pages = br.readLine().trim().split("\\s+");
+            int c = Integer.parseInt(br.readLine());
+            
+            
+            //----------- SOLUTION ----------------------------------
+            
+            Set<String> s = new LinkedHashSet<>(c);    // using linked hashset to store in order
+            int faults = 0;
+            
+            for(int i=0; i<n; i++){
+                if(!s.contains(pages[i])){                        // not present in set (FAULT)
+                    if(s.size()<c) s.add(pages[i]);               // space available  -->  add page
+                    else{
+                        Iterator<String> itr = s.iterator();      // space not available
+                        s.remove(itr.next());                     // remove LRU i.e, the first item in set
+                        s.add(pages[i]);                          // add the new page
+                    }
+                    faults++;
+                }
+                else{                                             // already present in set (HIT)
+                    s.remove(pages[i]);                           // remove the already present page
+                    s.add(pages[i]);                              // reenter that page
+                }
+            }
+            System.out.println(faults);
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+/*
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -80,3 +136,4 @@ class GFG
 		}
 	}
 }
+*/
