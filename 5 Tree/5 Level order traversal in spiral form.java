@@ -72,8 +72,8 @@ class Spiral
                Integer[] level = new Integer[size];  // to store the current level elements
                for(int i=0; i<size; i++){
                    temp = q.poll();
-                   if(reverse) level[size-1-i] = temp.data;
-                   else level[i] = temp.data;
+                   if(reverse) level[size-1-i] = temp.data;   // if reverse insert reverse in array
+                   else level[i] = temp.data;                 // if not insert normal
                    if(temp.left!=null) q.add(temp.left);
                    if(temp.right!=null) q.add(temp.right);
                }
