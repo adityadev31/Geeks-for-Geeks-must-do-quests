@@ -32,7 +32,37 @@ Testcase 1: Max subarray sum is 9 of elements (1, 2, 3, -2, 5) which is a contig
 **/
 
 
+/* no need of array */
+import java.util.*;
 
+public class Main{
+    
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int t = scan.nextInt();
+        while(t-- > 0){
+            int n = scan.nextInt();
+            
+            /*=============KADANE ALGORITHM=====================*/
+            
+            int gsum = scan.nextInt();    // arr[0]
+            int lsum = gsum , x = -1;
+            for(int i=1; i<n; i++){
+                x = scan.nextInt();
+                lsum = Math.max(lsum + x, x);    // lsum = max(lsum + arr[i], arr[i])
+                gsum = Math.max(lsum, gsum);
+            }
+            
+            System.out.println(gsum);
+        }
+    }
+    
+}
+
+
+
+
+/* with array */
 
 import java.util.*;
 import java.lang.*;
