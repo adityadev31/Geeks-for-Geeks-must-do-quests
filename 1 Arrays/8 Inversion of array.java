@@ -30,86 +30,7 @@ Testcase 1: The sequence 2, 4, 1, 3, 5 has three inversions (2, 1), (4, 1), (4, 
 
 **/
 
-
-
-import java.util.*;
-import java.lang.*;
-import java.io.*;
-
-class GFG {
-    
-    public static long inversions;
-    
-    public static void merge(long arr[], int l, int m, int r){
-        
-        // calculating inversions
-        int p=l, q=m+1;
-        while(p<=m && q<=r){
-            if(arr[p] > arr[q]){
-                inversions += m-p+1;
-                q++;
-            }
-            else p++;
-        }
-        
-        
-        // merge sort
-        int n1 = m-l+1;
-        int n2 = r-m;
-        long arr1[] = new long[n1];
-        long arr2[] = new long[n2];
-        for(int i=0; i<n1; i++){ arr1[i] = arr[i+l]; }
-        for(int i=0; i<n2; i++){ arr2[i] = arr[i+m+1]; }
-        int i=0, j=0, k=l;
-        while(i<n1 && j<n2){
-            if(arr1[i]<arr2[j]){ arr[k++]=arr1[i++]; }
-            else{ arr[k++]=arr2[j++]; }
-        }
-        while(i<n1){ arr[k++]=arr1[i++]; }
-        while(j<n2){ arr[k++]=arr2[j++]; }
-    }
-    
-    public static void mergeSort(long arr[], int l, int r){
-        if(l>=r) return;
-        int m = (l+r)/2;
-        mergeSort(arr, l, m);
-        mergeSort(arr, m+1, r);
-        merge(arr, l, m, r);
-    }
-    
-    public static void findInversion(long[] arr, int n){
-        mergeSort(arr, 0, n-1);
-        long ans = inversions;
-        inversions = 0;
-        System.out.println(ans);
-    }
-    
-	public static void main (String[] args) throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int t = Integer.parseInt(br.readLine());
-		while(t-->0){
-		    int n = Integer.parseInt(br.readLine());
-		    String str[] = br.readLine().trim().split("\\s+");
-		    long arr[] = new long[n];
-		    for(int i=0; i<n; i++){
-		        arr[i] = Long.parseLong(str[i]);
-		    }
-		    findInversion(arr, n);
-		}
-	}
-}
-
-
-
-
-
-
-
-
-/**
-
-		B E T T E R    W A Y 
-		
+	
 
 import java.util.*;
 import java.io.BufferedReader;
@@ -162,7 +83,3 @@ class GFG
 	}
 }
 
-
-
-
-**/
