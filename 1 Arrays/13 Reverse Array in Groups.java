@@ -106,3 +106,57 @@ import java.util.*;
 
 
 // Ans = 3 2 1 5 4
+
+
+
+/*
+
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main{
+    
+    public static void swap(long[] arr, int i, int j){
+        long temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while(t-- > 0){
+            String[] st1 =  br.readLine().trim().split("\\s+");
+            String[] st2 =  br.readLine().trim().split("\\s+");
+            int n = Integer.parseInt(st1[0]);
+            int k = Integer.parseInt(st1[1]);
+            long arr[] = new long[n];
+            for(int i=0; i<n; i++) arr[i] = Long.parseLong(st2[i]);
+            //
+            int w1=0, w2=k-1;       // setting window
+            int l = w1, r = w2;     // setting iterators
+            while(w1<n){
+                if(r>=n) r=n-1;
+                while(l<r){
+                    swap(arr, l , r);
+                    l++;
+                    r--;
+                }
+                w1 = w2+1;
+                w2 = w2+k;
+                l = w1;
+                r = w2;
+            }
+            //
+            StringBuilder sb = new StringBuilder();
+            for(long x: arr) sb.append(x+" ");
+            System.out.println(sb);
+        }
+        
+    }
+    
+}
+
+
+*/
