@@ -116,7 +116,7 @@ class Solution {
                 int mul = (int)Math.sqrt((i*i)+(j*j));
                 if(mul*mul != i*i+j*j) continue;        // if not perfect square
                 if(mul > maxEle) continue;              // if out of range
-                if(hash[mul] == 1) return true;         // found
+                if(hash[mul] >= 1) return true;         // found
             }
         }
         return false;
