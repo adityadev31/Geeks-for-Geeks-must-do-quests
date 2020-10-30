@@ -80,3 +80,63 @@ import java.lang.Math;
     System.out.println("Units of water = " + water(arr, arr.length));
    }
  }
+
+
+
+
+
+
+
+
+
+
+
+/*   time complexity O(n) space O(n) BETTER APPROACH   */
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main{
+    
+    public static int findWater(int[] arr, int n){
+        int prev = arr[0], prev_i = 0, temp = 0, water = 0;
+        // forward pass
+        for(int i=1; i<n; i++){
+            // if current wall is greater than previous (reset temp)
+            if(prev <= arr[i]){
+                prev = arr[i];
+                prev_i = i;
+                temp = 0;
+            }
+            // if current wall is smaller than previous (update water and temp)
+            else{
+                water += prev - arr[i];
+                temp += prev - arr[i];
+            }
+        }
+        // backward pass
+        if(prev_i < n-1){       // i.e, only if no larger wall at end
+            prev = arr[n-1];
+            water -= temp;      // to set the water to the last good boundaries
+            
+            for(int i=n-1; i>= prev_i; i--){
+                if(prev <= arr[i]) prev = arr[i];
+                else water += prev - arr[i];
+            }
+        }
+        return water;
+    }
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while(t-->0){
+            int n = Integer.parseInt(br.readLine().trim());
+            String[] str = br.readLine().trim().split("\\s+");
+            int[] arr = new int[n];
+            for(int i=0; i<n; i++) arr[i] = Integer.parseInt(str[i]);
+            //
+            System.out.println(findWater(arr, n));
+        }
+    }
+}
