@@ -31,6 +31,87 @@ Testcase 1: a=3, b=4, and c=5 forms a pythagorean triplet, so we print "Yes"
 **/
 
 
+
+
+
+
+
+
+
+
+/*======== USING HASHING =========*/
+
+/*
+
+class Solution {
+    boolean checkTriplet(int[] arr, int n) {
+        
+        int maxEle = -1;
+        
+        // finding max element
+        for(int x: arr) if(maxEle < x) maxEle = x;
+        
+        // to get all the elements as indexes (note there will be no 0 as ele in arr hence maxEle+1)
+        int[] hash = new int[maxEle+1]; 
+        
+        // inserting no.of counts in hash of index as elements
+        for(int x: arr) hash[x]++;  
+        
+        // looping
+        for(int i=1; i<=maxEle; i++){
+            
+            if(hash[i] == 0) continue; // as count = 0 ==> element not present in arr[]
+            
+            for(int j=1; j<=maxEle; j++){
+                if((i == j && hash[i] == 1) || (hash[j] == 0)) continue; // either 1 element or zero
+                int mul = (int)Math.sqrt((i*i)+(j*j));
+                if(mul*mul != i*i+j*j) continue;        // if not perfect square
+                if(mul > maxEle) continue;              // if out of range
+                if(hash[mul] >= 1) return true;         // found
+            }
+        }
+        return false;
+    }
+}
+
+*/
+
+class Solution {
+    boolean checkTriplet(int[] arr, int n) {
+        int maxele = -1;
+        for(int x: arr) if(x > maxele) maxele = x;
+        int[] hash = new int[maxele+1];
+        for(int x: arr) hash[x]++;  // counting the no. of elements
+        // we know that there is no 0 element as range starts from 1 (hence loop starts with 1)
+        for(int i=1; i<=maxele; i++){
+            if(hash[i] == 0) continue;      // count = 0 means the ele was not in array
+            for(int j=1; j<=maxele; j++){
+                if(hash[j] == 0) continue;  // count = 0 means the ele was not in array
+                if(i == j && hash[i] <= 1) continue; // no more than one element
+                int mul = (int)Math.sqrt((i*i)+(j*j));
+                if((mul*mul) != ((i*i)+(j*j))) continue;    // if mul is not a perfect square
+                if(mul > maxele) continue;                  // mul out of range
+                if(hash[mul] >= 1) return true;             // found
+            }
+        }
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== N O R M A L  2-POINTER  M E T H O D ==========*/
+
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -86,41 +167,3 @@ class GFG
 
 
 
-
-
-/*======== USING HASHING =========*/
-
-/*
-
-class Solution {
-    boolean checkTriplet(int[] arr, int n) {
-        
-        int maxEle = -1;
-        
-        // finding max element
-        for(int x: arr) if(maxEle < x) maxEle = x;
-        
-        // to get all the elements as indexes (note there will be no 0 as ele in arr hence maxEle+1)
-        int[] hash = new int[maxEle+1]; 
-        
-        // inserting no.of counts in hash of index as elements
-        for(int x: arr) hash[x]++;  
-        
-        // looping
-        for(int i=1; i<=maxEle; i++){
-            
-            if(hash[i] == 0) continue; // as count = 0 ==> element not present in arr[]
-            
-            for(int j=1; j<=maxEle; j++){
-                if((i == j && hash[i] == 1) || (hash[j] == 0)) continue; // either 1 element or zero
-                int mul = (int)Math.sqrt((i*i)+(j*j));
-                if(mul*mul != i*i+j*j) continue;        // if not perfect square
-                if(mul > maxEle) continue;              // if out of range
-                if(hash[mul] >= 1) return true;         // found
-            }
-        }
-        return false;
-    }
-}
-
-*/
