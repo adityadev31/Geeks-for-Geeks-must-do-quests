@@ -91,7 +91,23 @@ import java.lang.Math;
 
 
 
-/*   time complexity O(n) space O(n) BETTER APPROACH   */
+/*   time complexity O(n) space O(n)                                     ========= B E T T E R   A P P R O A C H ===========   */
+/* Reference => https://www.geeksforgeeks.org/trapping-rain-water/ */
+/* 
+   Approach : The concept here is that if there is a larger wall to the right then the water can be retained with height equal to the smaller wall on the left. 
+              If there are no larger walls to the right then start from the left. There must be a larger wall to the left now. 
+              Let’s take an example if the heights are {….,3, 2, 1, 4,….}, So here 3 and 4 are boundaries the heights 2 and 1 are submerged and cannot act as boundaries. 
+              So at any point or index knowing the previous boundary is sufficient if there is a higher or equal length boundary in the remaining part of the array. 
+              If not then traverse the array backwards and now must be a larger wall to the left. 
+ 
+   Algorithm : 
+     Loop from index 0 to the end of the given array.
+     If a wall greater than or equal to the previous wall is encountered then make note of the index of that wall in a var called prev_index.
+     Keep adding previous wall’s height minus the current (ith) wall to the variable water.
+     Have a temporary variable that stores the same value as water.
+     If no wall greater than or equal to the previous wall is found then quit.
+     If prev_index < size of the input array then subtract the temp variable from water, and loop from end of the input array to prev_index and find a wall greater than or equal to the previous wall (in this case, the last wall from backwards).
+*/
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -102,7 +118,7 @@ public class Main{
         int prev = arr[0], prev_i = 0, temp = 0, water = 0;
         // forward pass
         for(int i=1; i<n; i++){
-            // if current wall is greater than previous (reset temp)
+            // if current wall is greater than or equal to previous (reset vars)
             if(prev <= arr[i]){
                 prev = arr[i];
                 prev_i = i;
@@ -115,7 +131,7 @@ public class Main{
             }
         }
         // backward pass
-        if(prev_i < n-1){       // i.e, only if no larger wall at end
+        if(prev_i < n-1){       // i.e, last wall was not a boundary
             prev = arr[n-1];
             water -= temp;      // to set the water to the last good boundaries
             
