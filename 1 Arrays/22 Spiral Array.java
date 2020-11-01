@@ -33,69 +33,51 @@ Output:
 
 
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 class Main
  {
-    public static void spiral(int[][] arr, int m, int n){
-        int topBorder = 0;
-        int rightBorder = n-1;
-        int bottomBorder = m-1;
-        int leftBorder = 0;
-        
-        StringBuilder sb = new StringBuilder();
-        
-        while(topBorder<=bottomBorder && leftBorder<=rightBorder){
-            // print top 
-            if(topBorder<=bottomBorder){
-                for(int j=leftBorder; j<=rightBorder; j++){ sb.append(arr[topBorder][j] + " "); }
-                topBorder++;
-            }
-            
-            // print right 
-            if(rightBorder>=leftBorder){
-                for(int i=topBorder; i<=bottomBorder; i++){ sb.append(arr[i][rightBorder] + " "); }
-                rightBorder--;
-            }
-            
-            // print bottom 
-            if(bottomBorder>=topBorder){
-                for(int j=rightBorder; j>=leftBorder; j--){ sb.append(arr[bottomBorder][j] + " "); }
-                bottomBorder--;
-            }
-            
-            // print left 
-            if(leftBorder<=rightBorder){
-                for(int i=bottomBorder; i>=topBorder; i--){ sb.append(arr[i][leftBorder] + " "); }
-                leftBorder++;
-            }
-        }
-        System.out.println(sb);
-    }
-     
 	public static void main (String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int t = Integer.parseInt(br.readLine());
 		while(t-->0){
-		    String size[] = br.readLine().trim().split("\\s+");
-		    String str[]  = br.readLine().trim().split("\\s+");
-		    
-		    int m = Integer.parseInt(size[0]);
-		    int n = Integer.parseInt(size[1]);
-		    
-		    int[][] arr = new int[m][n];
-		    int k=0, i=0, j=0;
-		    while(i<m){
-		        while(j<n){
-		            arr[i][j] = Integer.parseInt(str[k]);
-		            j++;
-		            k++;
+		    String str1[] = br.readLine().trim().split("\\s+");
+		    String str2[] = br.readLine().trim().split("\\s+");
+		    int r = Integer.parseInt(str1[0]);
+		    int c = Integer.parseInt(str1[1]);
+		    int k = 0;
+		    int arr[][] = new int[r][c];
+		    for(int i=0; i<r; i++){
+		        for(int j=0; j<c; j++){
+		            arr[i][j] = Integer.parseInt(str2[k++]);
 		        }
-		        i++;
-		        j=0;
 		    }
-		    spiral(arr, m, n);
+		    // call function
+		    //
+		    int T = 0, R = c-1, B = r-1, L = 0;
+		    StringBuilder sb = new StringBuilder();
+		    
+		    while(T <= B && L <= R){
+		        
+		        // printing TOP
+		        if(T<=B && L<=R) for(int i=L; i<=R; i++) sb.append(arr[T][i] + " ");
+		        T++;
+		        
+		        // printing RIGHT
+		        if(T<=B && L<=R) for(int i=T; i<=B; i++) sb.append(arr[i][R] + " ");
+		        R--;
+		        
+		        // printing Bottom
+		        if(T<=B && L<=R) for(int i=R; i>=L; i--) sb.append(arr[B][i] + " ");
+		        B--;
+		        
+		        // printing Left
+		        if(T<=B && L<=R) for(int i=B; i>=T; i--) sb.append(arr[i][L] + " ");
+		        L++;
+		        
+		    }
+		    System.out.println(sb);
 		}
 	}
 }
