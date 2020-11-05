@@ -11,7 +11,7 @@ class GfG
             current = ahead;
             count++;
         }
-        if(ahead!=null) node.next = reverse(ahead, k);
+        if(current!=null) node.next = reverse(current, k);
         return prev;
     }
 }
