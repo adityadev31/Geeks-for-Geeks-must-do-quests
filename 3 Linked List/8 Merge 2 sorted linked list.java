@@ -42,6 +42,44 @@ Testcase 2: After merging the given two linked list , we have 1, 1, 2, 4 as outp
 
 
 
+
+
+
+
+
+/*  ================ U S I N G   R E C U R S I O N    ( B E T T E R )  =================== */
+
+class LinkedList
+{
+    Node sortedMerge(Node headA, Node headB) {
+     if(headA == null) return headB;            // base case
+     if(headB == null) return headA;            // base case
+     if(headA.data < headB.data){               // case-1
+         headA.next = sortedMerge(headA.next, headB);  // recursive call
+         return headA;
+     }
+     else{                                      // case-2
+         headB.next = sortedMerge(headA, headB.next);   // recursive call
+         return headB;
+     }
+   } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================= U S I N G   D U M M Y   P O I N T E R S  ============================== */
+
+
 class LinkedList
 {
     Node sortedMerge(Node headA, Node headB) {
