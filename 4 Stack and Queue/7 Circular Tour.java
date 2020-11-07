@@ -39,11 +39,38 @@ Testcase 1: there are 4 petrol pumps with amount of petrol and distance to next 
 
 
 
-//  https://www.youtube.com/watch?v=nTKdYm_5-ZY
+// Explanation  -->   https://www.youtube.com/watch?v=nTKdYm_5-ZY
 
 /* ===================== OPTIMIZED SOLN O(n) ========================== */
 
+/*  ALGORITHM
+    
+    1) keep track of (petrol in surplus) -> +ve value and (deficient petrol)-> -ve value
+    2) loop from 0 -> N , if(-ve petrol) then
+            add this -ve to deficient
+            reset surplus to 0
+            start = i+1
+    3) after loop ends if (surplus+deficient)>=0 ==> we can make circular tour else return -1;
 
+*/
+
+class GfG
+{
+    int tour(int petrol[], int distance[])
+    {
+    	int N = petrol.length, start = 0, pLeft = 0, pNeed = 0;
+    	
+    	for(int i=0; i<N; i++){
+    	    pLeft += petrol[i]-distance[i];
+    	    if(pLeft < 0){      // reset if less petrol
+    	        pNeed += pLeft; // storing -ve value to pNeed
+    	        pLeft = 0;      // resetting fuel in tank to 0
+    	        start = i+1;    // resetting start point
+    	    }
+    	}
+    	return (pLeft+pNeed < 0) ? -1 : start;
+    }
+}
 
 
 
