@@ -117,19 +117,20 @@ class GfG
 
 class GfG
 {
-    public static boolean checker(Node root1, Node root2){
-        if(root1==null && root2==null) return true;
-        if((root1==null && root2!=null) || (root1!=null && root2==null)) return false;
-        if(root1!=null && root2!=null){
-            if(root1.data == root2.data) return checker(root1.left, root2.right);
-            else return false;
+    public static boolean helper(Node root1, Node root2){
+        if(root1 == null && root2 == null) return true;                                                 // base case
+        if((root1 == null && root2 != null) || (root1 != null && root2 == null)) return false;          // base case
+        if(root1.data == root2.data){
+            boolean outer = helper(root1.left, root2.right);                                            // left, right
+            boolean inner = helper(root1.right, root2.left);                                            // right, left
+            return outer&&inner;
         }
-        return false;
+        return false;                                                                                   // data1 != data2
     }
     
     public static boolean isSymmetric(Node root)
     {
-        return checker(root, root);
+        return helper(root, root);
     }
 }
 
