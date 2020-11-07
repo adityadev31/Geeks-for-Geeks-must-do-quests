@@ -1,3 +1,32 @@
+/*  ============ BEST WAY =============== */
+
+
+// return true if the given tree is a BST, else return false
+public class Tree
+{    
+    boolean isBSTHelper(Node root, int min, int max){
+        if(root == null) return true;                         // base case
+        if(root.data < min || root.data > max) return false;  // violation of BST RULE = false
+        return (isBSTHelper(root.left, min, root.data-1) && isBSTHelper(root.right, root.data+1, max)); // resursion
+    }
+    
+    boolean isBST(Node root){
+        return isBSTHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
 
