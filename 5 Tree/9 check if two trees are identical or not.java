@@ -74,7 +74,7 @@ class Tree
 	        boolean right = isIdentical(root1.right, root2.right);
 	        return (left&&right);
 	    }
-	    return false;
+	    return false;									// root1.data != root2.data
 	}
 	
 }
