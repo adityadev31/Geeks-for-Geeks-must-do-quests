@@ -86,3 +86,40 @@ class Spiral
            System.out.print(sb);
       }
 }
+
+
+
+
+
+
+
+
+/*  ========== SAME THING BUT SMALLER ========== */
+
+class Spiral
+{
+      ArrayList<Integer> findSpiral(Node node) 
+      {
+           ArrayList<Integer> ans = new ArrayList<>();
+           if(node == null) return ans;
+           Queue<Node> q = new LinkedList<>();
+           boolean reverse = true;
+           int size = -1;
+           Node x = null;
+           q.add(node);
+           while(!q.isEmpty()){
+               size = q.size();
+               int[] arr = new int[size];
+               for(int i=0; i<size; i++){
+                   x = q.poll();
+                   if(!reverse) arr[i] = x.data;
+                   if(reverse) arr[size-i-1] = x.data;
+                   if(x.left!=null) q.add(x.left);
+                   if(x.right!=null) q.add(x.right);
+               }
+               for(int ele : arr) ans.add(ele);
+               reverse = !reverse;
+           }
+           return ans;
+      }
+}
