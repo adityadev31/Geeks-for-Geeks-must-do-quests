@@ -39,24 +39,40 @@ Testcase 1: there are 4 petrol pumps with amount of petrol and distance to next 
 
 
 
+//  https://www.youtube.com/watch?v=nTKdYm_5-ZY
+
+/* ===================== OPTIMIZED SOLN O(n) ========================== */
+
+
+
+
+
+
+
+
+
+/* ===================== BRUTE FORCE O(n^2) =========================== */
+
 class GfG
 {
     int tour(int petrol[], int distance[])
     {
-        int N = petrol.length;
-        int remPetrol = 0;
-        int i=0, counter = 0;     // counter is like = hour hand and i = minute hand
-        while(counter<N){
-            remPetrol += petrol[i] - distance[i];
-            if(remPetrol < 0){          // if no petrol remain if we travel
-                counter++;              // increase counter
-                i = counter;            // lets start with updated counter
-                remPetrol = 0;          // reset remPetrol
-                continue;               
-            }
-            else if((i+1)%N == counter) return counter;   // if petrol is remaining and its the end of the circle (coz we started from counter and ending with counter with next move) return starting of the clock i.e, counter
-            else i = (i+1)%N;                             // if its not the end circularly upgrade i 
-        }
-        return -1;
+    	int N = petrol.length, start = 0, end = 0, pLeft = 0;
+    	int count = N;
+    	
+    	while(count > 0){
+    	    pLeft += petrol[end]-distance[end];
+    	    if(pLeft < 0){      // reset if less petrol
+    	        pLeft = 0;
+    	        start++;
+    	        end = start;
+    	        count--;
+    	    }
+    	    else{  // continue moving if sufficient petrol
+    	        end = (end+1)%N; // circularly incrementing end pointer
+    	        if(end == start) return start; // i.e, complete tour
+    	    }
+    	}
+    	return -1;
     }
 }
