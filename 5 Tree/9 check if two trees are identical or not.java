@@ -67,43 +67,14 @@ class Tree
 {
 	boolean isIdentical(Node root1, Node root2)
 	{
-	    if(root1==null && root2==null) return true;
-	    if(root1!=null && root2!=null){
-	        boolean L = isIdentical(root1.left, root2.left);
-	        boolean R = isIdentical(root1.right, root2.right);
-	        if(L==true && R==true){
-	            if(root1.data == root2.data) return true;
-	            return false;
-	        }
-	        return false;
+	    if((root1==null && root2!=null) || (root1!=null && root2==null)) return false;	// base case
+	    if(root1==null && root2==null) return true;						// base case
+	    if(root1.data == root2.data){
+	        boolean left = isIdentical(root1.left, root2.left);
+	        boolean right = isIdentical(root1.right, root2.right);
+	        return (left&&right);
 	    }
 	    return false;
 	}
 	
 }
-
-
-
-/*
-
-class Tree
-{
-	boolean isIdentical(Node root1, Node root2)
-	{
-	    if(root1==null && root2==null) return true;                                     //  null -- null
-	    if((root1==null && root2!=null) || (root1!=null && root2==null)) return false;  //  null -- not null
-	    if(root1 != null && root2 != null){                                             //  not null -- not null
-	        if(root1.data == root2.data){
-	            boolean left  = isIdentical(root1.left, root2.left);
-	            boolean right = isIdentical(root1.right, root2.right);
-	            if(left==true && right==true) return true;
-	            else return false;
-	        }
-	        else return false;
-	    }
-	    return false;
-	}
-	
-}
-
-*/
