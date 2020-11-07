@@ -37,6 +37,50 @@ Testcase 1: Starting from first subarray of size k = 3, we have 3 as maximum. Mo
 
 
 
+
+
+/* ====== BETTER APPROACH ======== */
+
+class solve{
+    static ArrayList <Integer> max_of_subarrays(int arr[], int n, int k)
+    {
+        int max = -1;
+        ArrayList<Integer> ans = new ArrayList<>();
+        // finding max from 1st iteration
+        for(int i=0; i<k; i++){
+            if(arr[i] > max) max = arr[i];
+        }
+        // adding max to the ans list
+        ans.add(max);
+        // rest of the iterations
+        for(int i=1; i<=n-k; i++){
+            
+            // if max == prev Element
+            if(max == arr[i-1]){    // need for complete iterations to search max
+                max = -1;
+                for(int j=i; j<i+k; j++) if(arr[j] > max) max = arr[j];
+                ans.add(max);
+            }
+            else{                   // compare already present (max) with (new element)
+                if(max < arr[i+k-1]) max = arr[i+k-1];
+                ans.add(max);
+            }
+        }
+        return ans;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*          ALGO
 
 Algorithm :
