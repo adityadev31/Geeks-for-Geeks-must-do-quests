@@ -107,8 +107,6 @@ class Tree
     int maxPathSum(Node root)
     { 
         helper(root);
-        int ans = maxVal;
-        maxVal = Integer.MIN_VALUE;
-        return ans;
+        return maxVal;
     } 
 }
