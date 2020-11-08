@@ -78,3 +78,39 @@ class Tree
         return ob.val;
     } 
 }
+
+
+
+
+
+
+
+/* ================== ANOTHER EXPANATION ===================== */
+
+class Tree
+{
+    private int maxVal;                     // this will store leaf-to-leaf path sums 
+    Tree(){ maxVal = Integer.MIN_VALUE; }
+    
+    int helper(Node root){
+        if(root == null) return 0;
+        if(root.left==null && root.right==null) return root.data;   // leaf node
+        int ls = helper(root.left);
+        int rs = helper(root.right);
+        int case1 = ls+rs+root.data;                // current node as root (leaf to leaf)
+        int case2 = Integer.max(ls,rs)+root.data;   // current node is in the path (hence max(ls, rs))
+        if(root.left != null && root.right != null){
+            maxVal = Integer.max(case1, maxVal);    // coz maxVal will store only leaf to leaf
+            return case2;                           // coz case2 is the case where we would need to pass on the value to the parent
+        }
+        return (root.left != null) ? (ls+root.data) : (rs+root.data);  // (null  notnull) case
+    }
+    
+    int maxPathSum(Node root)
+    { 
+        helper(root);
+        int ans = maxVal;
+        maxVal = Integer.MIN_VALUE;
+        return ans;
+    } 
+}
