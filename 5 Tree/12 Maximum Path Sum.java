@@ -56,26 +56,24 @@ Constraints:
 
 class Tree
 {
-    class Res{ int val; }
+    private int maxVal = Integer.MIN_VALUE;                                  // stores leaf-to-leaf max value
     
-    int helper(Node root, Res res){
-        if(root == null) return 0;                      // base case
-        if(root.left == null && root.right == null) return root.data;  // base case
-        int ls = helper(root.left, res);    // left branch
-        int rs = helper(root.right, res);   // right branch
-        if(root.left!=null && root.right!=null){
-            res.val = Math.max(res.val, ls+rs+root.data);   // max of (old, new)
-            return Math.max(ls, rs)+root.data;
+    int helper(Node root){
+        if(root == null) return 0;                                           // root (null) case
+        if(root.left == null && root.right == null) return root.data;        // (null null) case
+        int ls = helper(root.left);                                          // left branch
+        int rs = helper(root.right);                                         // right branch
+        if(root.left != null && root.right != null) {                        // (notnull notnull) case
+            maxVal = Integer.max(maxVal, ls+rs+root.data);                   // updating leaf-to-leaf val (ls+root.data+rs = leaf-to-leaf) (current node as root case)
+            return Integer.max(ls, rs)+root.data;                            // return (current node as a part of the maxpath) case
         }
-        return (root.left==null) ? rs+root.data : ls+root.data;
+        return (root.left != null) ? ls+root.data : rs+root.data;            // (notnull null) or vice-versa case
     }
     
     int maxPathSum(Node root)
     { 
-        Res ob = new Res();
-        ob.val = Integer.MIN_VALUE;
-        helper(root, ob);
-        return ob.val;
+        helper(root);
+        return maxVal;
     } 
 }
 
