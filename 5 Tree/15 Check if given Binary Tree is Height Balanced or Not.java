@@ -98,23 +98,19 @@ The maximum difference in height of left subtree and right subtree is 0. Hence b
 class Tree
 {
     
-     /* This function should return tree if passed  tree 
-     is balanced, else false. */
-    
-    int height(Node root) {
-        if(root == null) return 0;
+    private int height(Node root){
+        if(root==null) return 0;
         int l = height(root.left);
         int r = height(root.right);
-        return Math.max(l, r)+1;
+        return Integer.max(l,r)+1;
     }
     
     boolean isBalanced(Node root)
     {
-    	if(root == null) return true;
-    	int l = height(root.left);
-    	int r = height(root.right);
-    	if(!isBalanced(root.left) || !isBalanced(root.right) || Math.abs(l-r)>1) return false;
-    	return true;
+    	if(root==null) return true;
+    	int l = height(root.left);  // left  height
+    	int r = height(root.right); // right height
+    	return (isBalanced(root.left)&&isBalanced(root.right)&&Math.abs(l-r)<=1);
     }
 }
 
