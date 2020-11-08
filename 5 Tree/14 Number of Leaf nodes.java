@@ -45,31 +45,14 @@ Three leaves are 3 , 5 and 1.
 
 
 
-class Node
-{
-    int data;
-    Node left, right;
-}
-
 class Tree
 {
-    static int count = 0;
-    
-    void countLeaves1(Node root){
-        if(root == null) return;
-        if(root.left == null && root.right == null){
-            count += 1;
-            return;
-        }
-        countLeaves1(root.left);
-        countLeaves1(root.right);
-    }
-    
     int countLeaves(Node node) 
     {
-        countLeaves1(node);
-        int ans = count;
-        count = 0;
-        return ans;
+        if(node==null) return 0;
+        if(node.left==null && node.right==null) return 1;
+        int l = countLeaves(node.left);
+        int r = countLeaves(node.right);
+        return l+r;
     }
 }
