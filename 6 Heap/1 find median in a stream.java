@@ -36,6 +36,105 @@ Flow in stream : 5, 15, 1, 3
 
 
 
+/* =========== B E T T E R    W A Y ============= */
+
+import java.util.*;
+
+public class Main {
+    
+    public static void findMedian(String str){
+        PriorityQueue<Integer> max = new PriorityQueue<>(Collections.reverseOrder());   // gives max among the smallest
+        PriorityQueue<Integer> min = new PriorityQueue<>();                             // gives min among the largest
+        String input[] = str.split("\\s+");
+        // take input one by one
+        int num;
+        for(String i: input){
+            num = Integer.parseInt(i);
+            // case 1 (everything is null)
+            if(max.size() == 0){
+                max.add(num);
+                System.out.println(max.peek());
+            }
+            // case 2 (num<max.peek())
+            else if(num<max.peek()){
+                if(max.size()==min.size()){
+                    max.add(num);
+                    System.out.println(max.peek());
+                }
+                else if(max.size()>min.size()){
+                    min.add(max.poll());
+                    max.add(num);
+                    System.out.println(((min.peek()+max.peek())/2));
+                }
+                else{
+                    max.add(num);
+                    System.out.println(((min.peek()+max.peek())/2));
+                }
+            }
+            // case 3 (num>max.peek())
+            else if(num>max.peek()){
+                if(max.size()==min.size()){
+                    min.add(num);
+                    System.out.println(min.peek());
+                }
+                else if(max.size()<min.size()){
+                    max.add(min.poll());
+                    min.add(num);
+                    System.out.println(((min.peek()+max.peek())/2));
+                }
+                else{
+                    min.add(num);
+                    System.out.println(((min.peek()+max.peek())/2));
+                }
+            }
+            // case 4 (max.peek() < num > min.peek())
+            else{
+                if(max.size()==min.size()){
+                    max.add(num);
+                    System.out.println(max.peek());
+                }
+                else if(max.size()<min.size()){
+                    max.add(num);
+                    System.out.println(((min.peek()+max.peek())/2));
+                }
+                else{
+                    min.add(num);
+                    System.out.println(((min.peek()+max.peek())/2));
+                }
+            }
+        }
+    }
+    
+    public static void main(String[] args) throws Exception {
+        String str = "5 15 1 3";
+        findMedian(str);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************/
 
 
 import java.util.*;
