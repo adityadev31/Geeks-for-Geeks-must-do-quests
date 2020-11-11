@@ -36,6 +36,75 @@ Testcase 2: After sorting the resulted output is 2 2 6 6 4 5 7 8.
 **/
 
 
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+class GFG
+ {
+    private static class FreqSort implements Comparator<Map.Entry<Integer, Integer>>{
+        public int compare(Map.Entry<Integer, Integer> e1, Map.Entry<Integer, Integer> e2){
+            int n = e2.getValue()-e1.getValue();
+            if(n == 0){
+                return e1.getKey()-e2.getKey();
+            }
+            return n;
+        }
+    }
+     
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0){
+		    int n = Integer.parseInt(br.readLine());
+		    String str[] = br.readLine().trim().split("\\s+");
+		    int arr[] = new int[n];
+		    for(int i=0; i<n; i++) arr[i] = Integer.parseInt(str[i]);
+		    // mapping frequencies
+		    HashMap<Integer, Integer> map = new HashMap<>();
+		    for(int i: arr) map.put(i, map.getOrDefault(i, 0)+1);
+		    // sorting map according to values (freq)
+		    ArrayList<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
+		    Collections.sort(list, new FreqSort());
+		    // printing
+		    StringBuilder sb = new StringBuilder();
+		    for(Map.Entry<Integer, Integer> x : list){
+		        int count = x.getValue();
+		        while(count-- > 0) sb.append(x.getKey()+" ");
+		    }
+		    System.out.println(sb);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 import java.util.*;
