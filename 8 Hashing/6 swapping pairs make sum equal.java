@@ -99,3 +99,36 @@ class GFG
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution
+{
+    long findSwapValues(long A[], int n, long  B[], int m)
+    {
+        long sum1 = 0, sum2 = 0, diff = 0;
+        Set<Long> st = new HashSet<>();
+        for(long i: A){
+            sum1 += i;
+            st.add(i);
+        }
+        for(long i: B) sum2 += i;
+        diff = (sum1-sum2);           // sum1-x+y = sum2+x-y
+        if((sum1-sum2)%2!=0) return -1;
+        diff = diff/2;
+        for(long i : B){
+            if(st.contains(diff+i)) return 1;
+        }
+        return -1;
+    }
+}
