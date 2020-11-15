@@ -40,6 +40,57 @@ Testcase 2: There are 4 subarrays present whose sum is zero. The starting and en
 **/
 
 
+
+
+
+
+
+public static int findSubarray(int[] arr ,int n) 
+{
+    Set<Integer> st = new HashSet<>();
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int sum = 0;
+    st.add(sum);
+    for(int i=0; i<n; i++){
+        sum += arr[i];
+        if(st.contains(sum)){
+            int count = map.getOrDefault(sum, 0);		// keep counting the repeated sums
+            map.put(sum, (count+1));
+        }
+        else st.add(sum);
+    }
+    int ans = 0;
+    ArrayList<Integer> list = new ArrayList<>(map.values());
+    for(int i : list) ans+=(i*(i+1))/2;				// total subarrays = i*(i+1)/2
+    return ans;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
