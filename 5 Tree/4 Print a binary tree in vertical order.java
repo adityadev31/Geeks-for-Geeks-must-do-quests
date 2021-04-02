@@ -28,66 +28,134 @@
     }
 }*/
 
-class Pair{
-    Node node;
-    int hd;
-    Pair(Node x, int y){
-        this.node = x;
-        this.hd = y;
+static class Pack {
+        Node n;
+        int h;
+        Pack(Node n, int h) {
+            this.n = n;
+            this.h = h;
+        }
     }
+static ArrayList <Integer> verticalOrder(Node root) {
+    if(root == null) return new ArrayList<Integer>();
+    HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+    Queue<Pack> q = new LinkedList<>();
+    q.add(new Pack(root, 0));
+    Pack temp = null;
+    int min = Integer.MAX_VALUE;    // keeping track of min height and max height
+    int max = Integer.MIN_VALUE;
+    while(q.size()!=0) {
+        temp = q.poll();
+        if(temp.h < min) min = temp.h;
+        if(temp.h > max) max = temp.h;
+        if(!map.containsKey(temp.h))
+            map.put(temp.h, new ArrayList<Integer>());
+        map.get(temp.h).add(temp.n.data);
+        if(temp.n.left!=null) 
+            q.add(new Pack(temp.n.left, temp.h-1));
+        if(temp.n.right!=null) 
+            q.add(new Pack(temp.n.right, temp.h+1));
+    }
+
+    ArrayList<Integer> ans = new ArrayList<>();
+    for(int i=min; i<=max; i++) {               // iterating from min -> max
+        if(map.containsKey(i)) {
+            for(int ele: map.get(i))
+                ans.add(ele);
+        }
+    }
+    return ans;
 }
 
-class BinaryTree
-{
-    static HashMap<Integer, ArrayList<Integer>> map;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class Pair{
+//     Node node;
+//     int hd;
+//     Pair(Node x, int y){
+//         this.node = x;
+//         this.hd = y;
+//     }
+// }
+
+// class BinaryTree
+// {
+//     static HashMap<Integer, ArrayList<Integer>> map;
     
-    static void insertIntoMap(HashMap<Integer, ArrayList<Integer>> mp, int key, int value){
-        if(!mp.containsKey(key)) mp.put(key, new ArrayList<>());
-        mp.get(key).add(value);
-    }
+//     static void insertIntoMap(HashMap<Integer, ArrayList<Integer>> mp, int key, int value){
+//         if(!mp.containsKey(key)) mp.put(key, new ArrayList<>());
+//         mp.get(key).add(value);
+//     }
     
-    static void levelOrder(Node root, HashMap<Integer, ArrayList<Integer>> map){
+//     static void levelOrder(Node root, HashMap<Integer, ArrayList<Integer>> map){
     
-        Queue<Pair> q = new LinkedList<>(); // initializations
-        int hd = 0;
+//         Queue<Pair> q = new LinkedList<>(); // initializations
+//         int hd = 0;
         
-        q.add(new Pair(root, hd));           // for root
-        insertIntoMap(map, hd, root.data);
+//         q.add(new Pair(root, hd));           // for root
+//         insertIntoMap(map, hd, root.data);
         
-        while(!q.isEmpty()){
-            Pair x = q.poll();
-            if(x.node.left!=null){
-                q.add(new Pair(x.node.left, x.hd-1));
-                insertIntoMap(map, x.hd-1, x.node.left.data);
-            }
-            if(x.node.right!=null){
-                q.add(new Pair(x.node.right, x.hd+1));
-                insertIntoMap(map, x.hd+1, x.node.right.data);
-            }
-        }
+//         while(!q.isEmpty()){
+//             Pair x = q.poll();
+//             if(x.node.left!=null){
+//                 q.add(new Pair(x.node.left, x.hd-1));
+//                 insertIntoMap(map, x.hd-1, x.node.left.data);
+//             }
+//             if(x.node.right!=null){
+//                 q.add(new Pair(x.node.right, x.hd+1));
+//                 insertIntoMap(map, x.hd+1, x.node.right.data);
+//             }
+//         }
         
-    }
+//     }
     
-    static ArrayList <Integer> verticalOrder(Node root)
-    {
-        map = new HashMap<Integer, ArrayList<Integer>>();
-        levelOrder(root, map);
+//     static ArrayList <Integer> verticalOrder(Node root)
+//     {
+//         map = new HashMap<Integer, ArrayList<Integer>>();
+//         levelOrder(root, map);
         
-        ArrayList<Map.Entry<Integer, ArrayList<Integer>>> list = new ArrayList<>(map.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Integer, ArrayList<Integer>>>(){
-            public int compare(Map.Entry<Integer, ArrayList<Integer>> e1, Map.Entry<Integer, ArrayList<Integer>> e2){
-                return e1.getKey()-e2.getKey();
-            }
-        });
+//         ArrayList<Map.Entry<Integer, ArrayList<Integer>>> list = new ArrayList<>(map.entrySet());
+//         Collections.sort(list, new Comparator<Map.Entry<Integer, ArrayList<Integer>>>(){
+//             public int compare(Map.Entry<Integer, ArrayList<Integer>> e1, Map.Entry<Integer, ArrayList<Integer>> e2){
+//                 return e1.getKey()-e2.getKey();
+//             }
+//         });
         
-        ArrayList<Integer> l1 = new ArrayList<>();
-        for(Map.Entry<Integer, ArrayList<Integer>> x : list){
-            for(int y : x.getValue()) l1.add(y);
-        }
+//         ArrayList<Integer> l1 = new ArrayList<>();
+//         for(Map.Entry<Integer, ArrayList<Integer>> x : list){
+//             for(int y : x.getValue()) l1.add(y);
+//         }
         
-        return l1;
-    }
-}
+//         return l1;
+//     }
+// }
 
 
 
