@@ -60,3 +60,19 @@ public class Main {
         System.out.println(isMatched(s1,pat));
     }
 }
+
+
+/*
+    Pattern Hash: 214
+    Current Hash: 112
+    Current Hash: 121
+    Current Hash: 211
+    Current Hash: 113
+    Current Hash: 132
+    Current Hash: 321
+    Current Hash: 213
+    Current Hash: 132
+    Current Hash: 321
+    Current Hash: 214
+    true
+*/
