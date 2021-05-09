@@ -69,3 +69,11 @@ public class Main {
         System.out.println(KMP_match(s1, pat));
     }
 }
+
+
+/*
+  output - 
+  
+  0 1 0 1 2 3 4 5 2 
+  false
+*/
